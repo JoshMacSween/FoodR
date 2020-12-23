@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const restaurantSchema = require("./Restaurant")
+const restaurantSchema = require("./Restaurant");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -15,8 +15,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  },
-  favourites: [restaurantSchema],
+  }
+  // favourites: [restaurantSchema],
 });
 
 module.exports = mongoose.model("User", userSchema);

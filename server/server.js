@@ -30,3 +30,6 @@ mongoose.connect(
 
 const userRouter = require("./routes/userRouter");
 app.use("/users", userRouter);
+
+const restaurantRouter = require("./routes/restaurantRouter");
+app.use("/restaurants", restaurantRouter);
