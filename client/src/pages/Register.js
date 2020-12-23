@@ -4,23 +4,13 @@ import { Container, Form, Card, Button, Col, Row } from "react-bootstrap";
 import { UserContext } from "../contexts/UserProvider";
 
 export default function Register() {
-  const { user, setUser } = useContext(UserContext);
-
-  function handleChangeName(e) {
-    setUser({ ...user, name: e.target.value });
-  }
-  function handleChangeEmail(e) {
-    setUser({ ...user, email: e.target.value });
-  }
-  function handleChangePassword(e) {
-    setUser({ ...user, password: e.target.value });
-  }
-
-  function handleChangeFavourites(e) {
-    const value = e.target.value
-
-    setUser({ ...user, favourites: [{ name: value }] });
-  }
+  const {
+    user,
+    handleChangeName,
+    handleChangeEmail,
+    handleChangePassword,
+    handleChangeFavourites,
+  } = useContext(UserContext);
 
   return (
     <Container>
