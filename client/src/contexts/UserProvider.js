@@ -27,12 +27,19 @@ export default function UserProvider(props) {
       .then(response => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userData", JSON.stringify(response.data.user));
+        history.push("/");
       })
-      .then(history.push("/ResaurantList"))
+
       .catch(err => {
         console.log(err);
       });
   };
+
+  const logout = () => {
+    setUser(null)
+    history.push("/")
+  }
+
   useEffect(() => {
     const data = localStorage.getItem("token");
     if (data) {
@@ -68,6 +75,7 @@ export default function UserProvider(props) {
   return (
     <UserContext.Provider
       value={{
+        logout,
         loginUser,
         token,
         setToken,

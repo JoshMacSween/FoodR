@@ -8,7 +8,7 @@ export default function RestaurantList() {
 
   return (
     <Container>
-      <h2>{user.name}'s Favourite Places To Eat</h2>
+      {user ? <h2>{user.name}'s Favourite Places To Eat</h2> : null}
       {user && user.favourites ? (
         user.favourites.map(favourite => {
           return (
