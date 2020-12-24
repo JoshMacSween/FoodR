@@ -6,22 +6,25 @@ import { LinkContainer } from "react-router-bootstrap";
 export default function Header() {
   const { user, token, logout } = useContext(UserContext);
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">Fooder</Navbar.Brand>
+    <Navbar bg="light" expand="lg" className="d-flex justify-content-around">
+      <Navbar.Brand href="/" className="p-2 flex-grow-1">Fooder</Navbar.Brand>
 
       {/* {/* {token ? ( */}
-      <Nav.Item>
-        <Button onClick={logout}>Logout</Button>
-      </Nav.Item>
 
-      <Nav.Link href="/Login">Login</Nav.Link>
+      <LinkContainer to="/Login">
+        <Nav.Link>Login</Nav.Link>
+      </LinkContainer>
 
-      <Nav.Link href="/Register">Register</Nav.Link>
+      <LinkContainer to="/Register">
+        <Nav.Link>Register</Nav.Link>
+      </LinkContainer>
 
-      <Nav.Link href="/About">About</Nav.Link>
       <LinkContainer to="/RestaurantList">
         <Nav.Link>Favourites</Nav.Link>
       </LinkContainer>
+      <Nav.Item>
+        <Button onClick={logout}>Logout</Button>
+      </Nav.Item>
     </Navbar>
   );
 }

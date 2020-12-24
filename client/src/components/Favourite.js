@@ -5,7 +5,7 @@ export default function Favourite({favourite}) {
   return (
     <Container>
       <Card>
-        <Card.Body>
+        <Card.Body >
           {favourite.name}
         </Card.Body>
       </Card>

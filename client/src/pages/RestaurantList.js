@@ -12,7 +12,7 @@ export default function RestaurantList() {
       {user && user.favourites ? (
         user.favourites.map(favourite => {
           return (
-            <Row>
+            <Row className="mb-3">
               <Col key={favourite._id}>
                 <Favouite favourite={favourite} />
               </Col>
