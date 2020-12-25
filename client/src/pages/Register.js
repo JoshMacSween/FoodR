@@ -14,7 +14,7 @@ export default function Register() {
 
   return (
     <Container>
-      <h3 className="text-center">Register for FoodR</h3>
+      <h3 className="text-center">Register for Fooder</h3>
       <Form
         onSubmit={e => {
           e.preventDefault();

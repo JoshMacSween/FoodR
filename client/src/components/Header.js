@@ -7,7 +7,9 @@ export default function Header() {
   const { user, token, logout } = useContext(UserContext);
   return (
     <Navbar bg="light" expand="lg" className="d-flex justify-content-around">
-      <Navbar.Brand href="/" className="p-2 flex-grow-1">Fooder</Navbar.Brand>
+      <Navbar.Brand href="/" className="p-2 flex-grow-1">
+        Fooder
+      </Navbar.Brand>
 
       {/* {/* {token ? ( */}
 
