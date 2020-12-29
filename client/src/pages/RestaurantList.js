@@ -1,10 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { UserContext } from "../contexts/UserProvider";
 import Favouite from "../components/Favourite";
 
 export default function RestaurantList() {
   const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    
+  }, [])
 
   return (
     <Container>

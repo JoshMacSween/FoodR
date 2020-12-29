@@ -5,9 +5,7 @@ import { UserContext } from "../contexts/UserProvider";
 import { useHistory } from "react-router";
 
 export default function Register() {
-  const {
-    formSubmit
-  } = useContext(UserContext);
+  const { formSubmit } = useContext(UserContext);
   const [form, setForm] = useState({});
   const [error, setError] = useState(null);
   const history = useHistory();
@@ -31,7 +29,7 @@ export default function Register() {
             const response = await formSubmit({ ...form, favourites });
             console.log(response);
             setError(null);
-            history.push("/");
+            history.push("/RestaurantList");
           } catch (error) {
             setError("Something went wrong, please try again");
           }
@@ -62,27 +60,26 @@ export default function Register() {
 
         <Form.Label>Name a few of your favourite local restaurants</Form.Label>
 
-          {favourites.map((favourite, i) => {
-            return (
-              <Form.Control
-                key={i}
-                value={favourite.name}
-                onChange={e =>
-                  setFavourites([
-                    ...favourites.map((f, index) =>
-                      index === i ? { name: e.target.value } : f
-                    ),
-                  ])
-                }
-                type="text"
-                name={`favourites-${i}`}
-              />
-            );
-          })}
+        {favourites.map((favourite, i) => {
+          return (
+            <Form.Control
+              key={i}
+              value={favourite.name}
+              onChange={e =>
+                setFavourites([
+                  ...favourites.map((f, index) =>
+                    index === i ? { name: e.target.value } : f
+                  ),
+                ])
+              }
+              type="text"
+              name={`favourites-${i}`}
+              required
+            />
+          );
+        })}
 
-
-          <Button onClick={addFavourite}>+</Button>
-
+        <Button onClick={addFavourite} block>Add Another</Button>
 
         <Button type="submit" block>
           Submit

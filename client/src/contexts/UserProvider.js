@@ -32,8 +32,9 @@ export default function UserProvider(props) {
   };
 
   const logout = () => {
-    setUser(null);
-    history.push("/");
+    localStorage.removeItem("userData")
+    localStorage.removeItem("token")
+    history.push("/Login");
   };
 
   useEffect(() => {
