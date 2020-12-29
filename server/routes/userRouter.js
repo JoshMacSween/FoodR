@@ -51,6 +51,7 @@ router.post("/login", async (req, res) => {
 
 // Register User
 router.post("/", async (req, res) => {
+  console.log(req.body);
   const user = new User({
     name: req.body.name,
     email: req.body.email,
@@ -62,6 +63,7 @@ router.post("/", async (req, res) => {
     const newUser = await user.save();
     res.status(201).json(newUser);
   } catch (error) {
+    console.log(error.message);
     res.status(400).json({ message: error.message });
   }
 });

@@ -73,8 +73,8 @@ export default function UserProvider(props) {
     // }
   }
 
-  const formSubmit = form => {
-    axios.post("http://localhost:5000/users/", form);
+  const formSubmit = async form => {
+    return await axios.post("http://localhost:5000/users/", form);
   };
 
   return (

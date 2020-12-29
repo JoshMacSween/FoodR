@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Container, Form, Card, Button, Col, Row } from "react-bootstrap";
 import { UserContext } from "../contexts/UserProvider";
-import {useHistory} from "react-router"
+import { useHistory } from "react-router";
 
 export default function Register() {
   const {
@@ -14,7 +14,8 @@ export default function Register() {
     handleChangeFavourites,
   } = useContext(UserContext);
   const [form, setForm] = useState({});
-  const history = useHistory()
+  const [error, setError] = useState(null);
+  const history = useHistory();
 
   const generalChange = event => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -24,12 +25,25 @@ export default function Register() {
     <Container>
       <h3 className="text-center">Register for Fooder</h3>
       <Form
-        onSubmit={e => {
+        onSubmit={async e => {
           e.preventDefault();
-          formSubmit(form);
-          history.push("/")
+          try {
+            const response = await formSubmit(form);
+            console.log(response);
+            setError(null);
+            history.push("/");
+          } catch (error) {
+            setError("Something went wrong, please try again");
+          }
+          // if (response.status < 400) {
+          //   setError(null);
+          //   history.push("/");
+          // } else {
+          //   setError({ message: response.message });
+          // }
         }}
       >
+        <h3>{error}</h3>
         <Form.Label>Name</Form.Label>
         <Form.Control value={form.name} onChange={generalChange} name="name" />
 
