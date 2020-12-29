@@ -11,11 +11,7 @@ export default function UserProvider(props) {
     name: "",
     email: "",
     password: "",
-    favourites: [
-      {
-        name: "",
-      },
-    ],
+    favourites: [],
   });
 
   const loginUser = async () => {
@@ -36,9 +32,9 @@ export default function UserProvider(props) {
   };
 
   const logout = () => {
-    setUser(null)
-    history.push("/")
-  }
+    setUser(null);
+    history.push("/");
+  };
 
   useEffect(() => {
     const data = localStorage.getItem("token");
@@ -69,12 +65,22 @@ export default function UserProvider(props) {
   function handleChangeFavourites(e) {
     const value = e.target.value;
 
-    setUser({ ...user, favourites: [{ name: value }] });
+    setUser({ ...user, favourites: [...user.favourites, { name: value }] });
+
+    // for (let i = 0; i <= value.length; i++) {
+    //   setUser({ ...user, favourites: { name: value } });
+    //   console.log(value.length);
+    // }
   }
+
+  const formSubmit = form => {
+    axios.post("http://localhost:5000/users/", form);
+  };
 
   return (
     <UserContext.Provider
       value={{
+        formSubmit,
         logout,
         loginUser,
         token,
