@@ -14,29 +14,6 @@ export default function UserProvider(props) {
     favourites: [],
   });
 
-  const loginUser = async () => {
-    axios
-      .post("http://localhost:5000/users/login", {
-        email: user.email,
-        password: user.password,
-      })
-      .then(response => {
-        localStorage.setItem("token", JSON.stringify(response.data.token));
-        localStorage.setItem("userData", JSON.stringify(response.data.user));
-        history.push("/");
-      })
-
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const logout = () => {
-    localStorage.removeItem("userData")
-    localStorage.removeItem("token")
-    history.push("/Login");
-  };
-
   useEffect(() => {
     const data = localStorage.getItem("token");
     if (data) {
@@ -50,6 +27,31 @@ export default function UserProvider(props) {
       setUser(JSON.parse(data));
     }
   }, []);
+
+  const loginUser = async () => {
+    axios
+      .post("http://localhost:5000/users/login", {
+        email: user.email,
+        password: user.password,
+      })
+      .then(response => {
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        localStorage.setItem("userData", JSON.stringify(response.data.user));
+        history.push("/RestaurantList");
+        history.go(0);
+      })
+
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const logout = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("token");
+    history.push("/Login");
+    history.go(0);
+  };
 
   const [allUsers, setAllUsers] = useState([]);
 

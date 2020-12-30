@@ -8,7 +8,7 @@ export default function RestaurantList() {
 
   useEffect(() => {
     
-  }, [])
+  }, [user])
 
   return (
     <Container>

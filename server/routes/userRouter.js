@@ -51,14 +51,17 @@ router.post("/login", async (req, res) => {
 
 // Register User
 router.post("/", async (req, res) => {
-  console.log(req.body);
+  const { name, email, password, favourites } = req.body;
   const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    favourites: req.body.favourites,
+    name: name,
+    email: email,
+    password: password,
+    favourites: favourites,
   });
 
+  if (!name || !email || !password || !favourites) {
+    res.status(400).json({ message: "Not all fields have been entered" });
+  }
   try {
     const newUser = await user.save();
     res.status(201).json(newUser);
