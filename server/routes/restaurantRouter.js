@@ -15,11 +15,12 @@ router.get("/", async (req, res) => {
 // Register a restaurant
 router.post("/", async (req, res) => {
   try {
+    const { name, email, password, address, dishes } = req.body;
     const restaurant = new Restaurant({
-      name: req.body.name,
+      name: name,
     });
     const newRestaurant = await restaurant.save();
-    res.status(201).json(newRestaurant);
+    res.status(201).json({ success: true, newRestaurant });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

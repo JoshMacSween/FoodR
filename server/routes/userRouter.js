@@ -62,6 +62,11 @@ router.post("/", async (req, res) => {
   if (!name || !email || !password || !favourites) {
     res.status(400).json({ message: "Not all fields have been entered" });
   }
+
+  if (email === User.find({email: email})) {
+    res.status(400).json({message: "An account already exists for this email"})
+  }
+
   try {
     const newUser = await user.save();
     res.status(201).json(newUser);

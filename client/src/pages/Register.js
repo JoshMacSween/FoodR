@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
-import { UserContext } from "../contexts/UserProvider";
+import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { useHistory } from "react-router";
 
 export default function Register() {
-  const { formSubmit } = useContext(UserContext);
+  const { formSubmit } = useContext(RestaurantContext);
   const [form, setForm] = useState({});
   const [error, setError] = useState(null);
   const history = useHistory();

@@ -70,10 +70,6 @@ export default function UserProvider(props) {
 
     setUser({ ...user, favourites: [...user.favourites, { name: value }] });
 
-    // for (let i = 0; i <= value.length; i++) {
-    //   setUser({ ...user, favourites: { name: value } });
-    //   console.log(value.length);
-    // }
   }
 
   const formSubmit = async form => {

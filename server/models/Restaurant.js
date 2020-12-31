@@ -10,7 +10,7 @@ const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
     index: true,
   },
   dishes: [dishSchema],
