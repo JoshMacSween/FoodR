@@ -3,11 +3,11 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import { UserContext } from "../contexts/UserProvider";
 import Favouite from "../components/Favourite";
 
-export default function RestaurantList() {
+export default function UserFavourites() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    
+
   }, [user])
 
   return (

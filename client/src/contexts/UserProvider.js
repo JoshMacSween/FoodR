@@ -37,7 +37,7 @@ export default function UserProvider(props) {
       .then(response => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userData", JSON.stringify(response.data.user));
-        history.push("/RestaurantList");
+        history.push("/UserFavourites");
         history.go(0);
       })
 
@@ -65,15 +65,14 @@ export default function UserProvider(props) {
     setUser({ ...user, password: e.target.value });
   }
 
-  const generalChange = (e) => {
-    setUser({...user, [e.target.name]: e.target.value})
-  }
+  const generalChange = e => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   function handleChangeFavourites(e) {
     const value = e.target.value;
 
     setUser({ ...user, favourites: [...user.favourites, { name: value }] });
-
   }
 
   const formSubmit = async form => {

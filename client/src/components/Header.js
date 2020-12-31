@@ -11,8 +11,6 @@ export default function Header() {
         Fooder
       </Navbar.Brand>
 
-      {/* {/* {token ? ( */}
-
       <LinkContainer to="/Login">
         <Nav.Link>Login</Nav.Link>
       </LinkContainer>
@@ -20,8 +18,11 @@ export default function Header() {
       <LinkContainer to="/Register">
         <Nav.Link>Register</Nav.Link>
       </LinkContainer>
+      <LinkContainer to="/VendorList">
+        <Nav.Link>See All Available Restaurants</Nav.Link>
+      </LinkContainer>
 
-      <LinkContainer to="/RestaurantList">
+      <LinkContainer to="/UserFavourites">
         <Nav.Link>Favourites</Nav.Link>
       </LinkContainer>
       <Nav.Item>

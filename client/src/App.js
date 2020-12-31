@@ -3,7 +3,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Partner from "./pages/Partner";
 import About from "./pages/About";
-import RestaurantList from "./pages/RestaurantList";
+import UserFavourites from "./pages/UserFavourites";
+import VendorList from "./pages/VendorList";
 import LoginBusiness from "./pages/LoginBusiness";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -25,7 +26,8 @@ function App() {
                 <Route path="/LoginBusiness" component={LoginBusiness} />
                 <Route path="/Register" component={Register} />
                 <Route path="/About" component={About} />
-                <Route path="/RestaurantList" component={RestaurantList} />
+                <Route path="/UserFavourites" component={UserFavourites} />
+                <Route path="/VendorList" component={VendorList} />
                 <Route path="/Partner" component={Partner} />
               </div>
             </Container>
