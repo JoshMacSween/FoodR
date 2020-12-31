@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
 
 export default function VendorList() {
@@ -18,11 +18,34 @@ export default function VendorList() {
   useEffect(() => {
     fetchRestaurants();
   }, []);
+
   return (
     <Container>
       <h3>Listing All Available Restaurants</h3>
+
       {restaurantList.map((restaurant, i) => {
-        return <h3 key={i}>{restaurant.name}</h3>;
+        return (
+          <Row key={i}>
+            <Col className="text-center mb-2">
+              <Card>
+                <Card.Header>{restaurant.name}</Card.Header>
+                <Card.Body>
+                  <Card.Text>
+                    {restaurant.description ? (
+                      restaurant.description
+                    ) : (
+                      <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Nesciunt reiciendis nulla esse necessitatibus,
+                        deleniti illum.
+                      </p>
+                    )}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        );
       })}
     </Container>
   );
