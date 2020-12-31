@@ -76,18 +76,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-///
-// router.get("/", async (req, res) => {
-//   try {
-//     const users = await User.find().populate({
-//       path: "jobPostings",
-//       select: "details service initHour addHour",
-//     });
-
-//     res.status(200).json({ success: true, users });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// });
-
 module.exports = router;

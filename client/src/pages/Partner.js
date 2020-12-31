@@ -1,13 +1,11 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import { useHistory } from "react-router";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { Container, Button, Form } from "react-bootstrap";
 
 export default function Partner() {
   const { formSubmit } = useContext(RestaurantContext);
   const [form, setForm] = useState({});
-  const [dishes, setDishes] = useState([]);
   const [error, setError] = useState(null);
   const history = useHistory();
 

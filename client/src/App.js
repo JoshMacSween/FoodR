@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Partner from "./pages/Partner";
 import About from "./pages/About";
 import RestaurantList from "./pages/RestaurantList";
+import LoginBusiness from "./pages/LoginBusiness";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -21,6 +22,7 @@ function App() {
               <div className="w-100 mt-4" style={{ maxWidth: "750px" }}>
                 <Route path="/" component={Home} exact />
                 <Route path="/Login" component={Login} />
+                <Route path="/LoginBusiness" component={LoginBusiness} />
                 <Route path="/Register" component={Register} />
                 <Route path="/About" component={About} />
                 <Route path="/RestaurantList" component={RestaurantList} />

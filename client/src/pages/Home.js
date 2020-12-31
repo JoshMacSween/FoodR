@@ -36,8 +36,8 @@ export default function Home() {
           </LinkContainer>
         </Col>
         <Col>
-          <LinkContainer to="/RestaurantList">
-            <Button block>Go To Favourites</Button>
+          <LinkContainer to="/LoginBusiness">
+            <Button block>Log In As Business</Button>
           </LinkContainer>
         </Col>
       </Row>

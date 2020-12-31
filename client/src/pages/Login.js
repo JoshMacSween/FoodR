@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function Login() {
   const {
+    generalChange,
     loginUser,
     token,
     setToken,

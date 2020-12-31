@@ -13,6 +13,12 @@ const restaurantSchema = new mongoose.Schema({
     // unique: true,
     index: true,
   },
+  email: {
+    type: String,
+    required: true,
+    index: true,
+    unique: true
+  },
   dishes: [dishSchema],
 });
 
