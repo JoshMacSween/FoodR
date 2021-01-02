@@ -29,6 +29,13 @@ export default function Home() {
           consectetur adipisicing elit. Tenetur sit, at quo fugit quibusdam vel.
         </Col>
       </Row>
+      <Row>
+        <Col className="mt-2">
+        <LinkContainer to="/Register">
+            <Button block>Sign Up</Button>
+          </LinkContainer>
+        </Col>
+      </Row>
       <Row className="mt-3">
         <Col>
           <LinkContainer to="/Partner">

@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
     favourites: favourites,
   });
 
-  if (!name || !email || !password || !favourites) {
+  if (!name || !email || !password) {
     res.status(400).json({ message: "Not all fields have been entered" });
   }
 

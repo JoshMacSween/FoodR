@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
-import { RestaurantContext } from "../contexts/RestaurantProvider";
+import { UserContext } from "../contexts/UserProvider";
 import { useHistory } from "react-router";
 
 export default function Register() {
-  const { formSubmit } = useContext(RestaurantContext);
+  const { formSubmit } = useContext(UserContext);
   const [form, setForm] = useState({});
   const [error, setError] = useState(null);
   const history = useHistory();
@@ -25,7 +25,7 @@ export default function Register() {
         onSubmit={async e => {
           e.preventDefault();
           try {
-            const response = await formSubmit({ ...form, favourites });
+            const response = await formSubmit({ ...form });
             console.log(response);
             setError(null);
             history.push("/UserFavourites");
@@ -57,7 +57,7 @@ export default function Register() {
         {/* <Form.Label>Password Confirm</Form.Label>
         <Form.Control value={form.passwordConfirm} type="password" /> */}
 
-        <Form.Label>Name a few of your favourite local restaurants</Form.Label>
+        {/* <Form.Label>Name a few of your favourite local restaurants</Form.Label>
 
         {favourites.map((favourite, i) => {
           return (
@@ -80,7 +80,7 @@ export default function Register() {
 
         <Button onClick={addFavourite} block>
           Add Another
-        </Button>
+        </Button> */}
 
         <Button type="submit" block>
           Submit

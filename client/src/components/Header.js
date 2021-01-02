@@ -11,23 +11,26 @@ export default function Header() {
         Fooder
       </Navbar.Brand>
 
-      <LinkContainer to="/Login">
-        <Nav.Link>Login</Nav.Link>
-      </LinkContainer>
 
-      <LinkContainer to="/Register">
+      {/* <LinkContainer to="/Register">
         <Nav.Link>Register</Nav.Link>
-      </LinkContainer>
+      </LinkContainer> */}
       <LinkContainer to="/VendorList">
         <Nav.Link>See All Available Restaurants</Nav.Link>
       </LinkContainer>
 
-      <LinkContainer to="/UserFavourites">
+      {/* <LinkContainer to="/UserFavourites">
         <Nav.Link>Favourites</Nav.Link>
-      </LinkContainer>
-      <Nav.Item>
-        <Button onClick={logout}>Logout</Button>
-      </Nav.Item>
+      </LinkContainer> */}
+      {user && user.name ? (
+        <Nav.Item>
+          <Button onClick={logout}>Logout</Button>
+        </Nav.Item>
+      ) : (
+        <LinkContainer to="/Login">
+          <Button>Login</Button>
+        </LinkContainer>
+      )}
     </Navbar>
   );
 }
