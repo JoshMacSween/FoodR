@@ -6,6 +6,9 @@ export const UserContext = createContext();
 
 export default function UserProvider(props) {
   const history = useHistory();
+  const [form, setForm] = useState({});
+  const [error, setError] = useState(null);
+
   const [token, setToken] = useState("");
   const [user, setUser] = useState({
     name: "",
@@ -82,6 +85,11 @@ export default function UserProvider(props) {
   return (
     <UserContext.Provider
       value={{
+        history,
+        form,
+        setForm,
+        error,
+        setError,
         generalChange,
         formSubmit,
         logout,
