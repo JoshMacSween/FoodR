@@ -29,17 +29,19 @@ export default function RestaurantAdmin() {
       //     }
       //   }}
       >
-        <Form.Label>Address</Form.Label>
-        <Form.Control
-          name="address"
-          onChange={generalChange}
-          value={form.address}
-          type="text"
-        />
-        {/* <Form.Label>Description</Form.Label>
-        <Form.Control value={form.description}/> */}
-        {/* <Form.Label>Dishes</Form.Label>
-        <Form.Control value={form.dishes}/> */}
+        <Form.Label>Style of Food</Form.Label>
+        <Form.Control value={form.style} as="select" name="style">
+          <option>Burger's & Fries</option>
+          <option>Pizza</option>
+          <option>Indian</option>
+          <option>Italian</option>
+          <option>Japanese</option>
+        </Form.Control>
+        <Form.Label>Description</Form.Label>
+        <Form.Control value={form.description} name="description" />
+
+        <Form.Label>Dishes</Form.Label>
+        <Form.Control value={form.dishes} name="dishes" />
       </Form>
     </Container>
   );

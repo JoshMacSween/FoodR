@@ -28,7 +28,7 @@ export default function Register() {
             const response = await formSubmit({ ...form });
             console.log(response);
             setError(null);
-            history.push("/UserFavourites");
+            history.push("/RegisterSuccess");
           } catch (error) {
             setError("Something went wrong, please try again");
           }

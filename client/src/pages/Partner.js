@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container, Button, Form} from "react-bootstrap";
 
 export default function Partner() {
   const { formSubmit } = useContext(RestaurantContext);
@@ -24,7 +24,7 @@ export default function Partner() {
             const response = await formSubmit({ ...form });
             console.log(response);
             setError(null);
-            history.push("/LoginBusiness");
+            history.push("/RegisterSuccess");
           } catch (error) {
             setError("Something went wrong, please try again");
           }
@@ -50,6 +50,20 @@ export default function Partner() {
           name="password"
           onChange={generalChange}
           type="password"
+        />
+        <Form.Label>Address</Form.Label>
+        <Form.Control
+          name="address"
+          onChange={generalChange}
+          value={form.address}
+          type="text"
+        />
+        <Form.Label>City</Form.Label>
+        <Form.Control
+          name="address"
+          onChange={generalChange}
+          value={form.city}
+          type="text"
         />
         {/* <Form.Label>Name a few of your signature dishes</Form.Label>
         <Form.Control name="dishes" type="text" as="textarea" /> */}
