@@ -28,7 +28,7 @@ export default function Header() {
       {/* <LinkContainer to="/UserFavourites">
         <Nav.Link>Favourites</Nav.Link>
       </LinkContainer> */}
-      {user && user.name ? (
+      {restaurantToken || token ? (
         <Nav.Item>
           <Button onClick={logout}>Logout</Button>
         </Nav.Item>

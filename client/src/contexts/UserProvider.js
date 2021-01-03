@@ -50,8 +50,7 @@ export default function UserProvider(props) {
   };
 
   const logout = () => {
-    localStorage.removeItem("userData");
-    localStorage.removeItem("token");
+    localStorage.clear()
     history.push("/Login");
     history.go(0);
   };
