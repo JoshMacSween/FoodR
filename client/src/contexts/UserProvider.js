@@ -40,7 +40,7 @@ export default function UserProvider(props) {
       .then(response => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userData", JSON.stringify(response.data.user));
-        history.push("/UserFavourites");
+        history.push("/RestaurantList");
         history.go(0);
       })
 

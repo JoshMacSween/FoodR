@@ -8,45 +8,35 @@ export default function Home() {
         <h2>Welcome to Fooder</h2>
         <p>The food delivery service for foodies</p>
       </div>
+
       <Row>
         <Col>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero impedit
-          nisi excepturi, autem nihil aut quibusdam iure sequi veniam illo et
-          aliquam temporibus blanditiis similique!Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Quasi ratione reiciendis vitae,
-          asperiores excepturi inventore.
+          <Card>
+            <Card.Body>
+              <Card.Title>User Sign Up</Card.Title>
+
+              <LinkContainer to="/Register">
+                <Button block>Sign Up</Button>
+              </LinkContainer>
+              <LinkContainer to="/Login">
+                <Button block>Log In</Button>
+              </LinkContainer>
+            </Card.Body>
+          </Card>
         </Col>
         <Col>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero impedit
-          nisi excepturi, autem nihil aut quibusdam iure sequi veniam illo et
-          aliquam temporibus blanditiis similique!Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Error quam facere quia quis, animi amet.
-        </Col>
-        <Col>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero impedit
-          nisi excepturi, autem nihil aut quibusdam iure sequi veniam illo et
-          aliquam temporibus blanditiis similique!Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Tenetur sit, at quo fugit quibusdam vel.
-        </Col>
-      </Row>
-      <Row>
-        <Col className="mt-2">
-        <LinkContainer to="/Register">
-            <Button block>Sign Up</Button>
-          </LinkContainer>
-        </Col>
-      </Row>
-      <Row className="mt-3">
-        
-        <Col>
-          <LinkContainer to="/Partner">
-            <Button block>Register Your Business</Button>
-          </LinkContainer>
-        </Col>
-        <Col>
-          <LinkContainer to="/LoginBusiness">
-            <Button block>Log In As Business</Button>
-          </LinkContainer>
+          <Card>
+            <Card.Body>
+              <Card.Title>Business Sign Up</Card.Title>
+
+              <LinkContainer to="/Partner">
+                <Button block>Register Your Business</Button>
+              </LinkContainer>
+              <LinkContainer to="/LoginBusiness">
+                <Button block>Business Log In</Button>
+              </LinkContainer>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>

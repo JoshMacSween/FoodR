@@ -22,12 +22,9 @@ export default function Header() {
         <Nav.Link>Register</Nav.Link>
       </LinkContainer> */}
       <LinkContainer to="/VendorList">
-        <Nav.Link>See All Available Restaurants</Nav.Link>
+        <Nav.Link>Restaurants</Nav.Link>
       </LinkContainer>
 
-      {/* <LinkContainer to="/UserFavourites">
-        <Nav.Link>Favourites</Nav.Link>
-      </LinkContainer> */}
       {restaurantToken || token ? (
         <Nav.Item>
           <Button onClick={logout}>Logout</Button>

@@ -24,7 +24,7 @@ export default function Partner() {
             const response = await formSubmit({ ...form });
             console.log(response);
             setError(null);
-            history.push("/");
+            history.push("/LoginBusiness");
           } catch (error) {
             setError("Something went wrong, please try again");
           }

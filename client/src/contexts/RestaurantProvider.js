@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export const RestaurantContext = createContext();
@@ -10,7 +11,7 @@ export default function RestaurantProvider(props) {
     address: "",
     dishes: [],
   });
-
+  const history = useHistory();
   const [restaurantToken, setRestaurantToken] = useState("");
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function RestaurantProvider(props) {
     if (data) {
       setRestaurantToken(JSON.parse(data));
     }
-  });
+  }, []);
 
   const formSubmit = async form => {
     return await axios.post("http://localhost:5000/restaurants/", form);
@@ -51,7 +52,9 @@ export default function RestaurantProvider(props) {
           "restaurantData",
           JSON.stringify(response.data.restaurant)
         );
-      });
+      })
+      .then(history.push("/"))
+      .then(history.go(0));
   };
 
   return (
