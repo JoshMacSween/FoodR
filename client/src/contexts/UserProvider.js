@@ -53,7 +53,7 @@ export default function UserProvider(props) {
 
   const logout = () => {
     localStorage.clear()
-    history.push("/Login");
+    history.push("/");
     history.go(0);
   };
 

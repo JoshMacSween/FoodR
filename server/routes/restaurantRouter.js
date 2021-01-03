@@ -4,6 +4,14 @@ const { Restaurant } = require("../models/Restaurant");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
+//Get One Restaurant
+router.get("/:id", async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findById(req.params.id);
+    res.status(200).json({ success: true, restaurant });
+  } catch (error) {}
+});
+
 //Get all restaurants
 router.get("/", async (req, res) => {
   try {
@@ -63,6 +71,20 @@ router.post("/", async (req, res) => {
     res.status(201).json({ success: true, newRestaurant });
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+// Add Restaurant Details
+router.put("/:id", async (req, res) => {
+  try {
+    const data = req.body;
+    const id = req.params.id;
+    const options = { new: true };
+    const result = await Restaurant.findByIdAndUpdate(id, data, options);
+    res.status(201).json({success: true, result})
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
   }
 });
 

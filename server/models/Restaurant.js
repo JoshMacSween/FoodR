@@ -17,7 +17,13 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     required: true,
     index: true,
-    unique: true
+    unique: true,
+  },
+  description: {
+    type: String,
+  },
+  style: {
+    type: String,
   },
   dishes: [dishSchema],
 });

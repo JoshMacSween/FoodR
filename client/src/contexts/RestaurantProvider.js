@@ -11,6 +11,7 @@ export default function RestaurantProvider(props) {
     address: "",
     dishes: [],
   });
+  const [form, setForm] = useState({});
   const history = useHistory();
   const [restaurantToken, setRestaurantToken] = useState("");
 
@@ -34,7 +35,7 @@ export default function RestaurantProvider(props) {
   };
 
   const generalChangeRestaurant = e => {
-    setRestaurant({ ...restaurant, [e.target.name]: e.target.value });
+    setForm({ ...restaurant, [e.target.name]: e.target.value });
   };
 
   const loginRestaurant = async () => {
@@ -52,15 +53,16 @@ export default function RestaurantProvider(props) {
           "restaurantData",
           JSON.stringify(response.data.restaurant)
         );
-      })
-      .then(history.push("/"))
-      .then(history.go(0));
+      });
+    // .then(history.push("/RestaurantAdmin"))
+    // .then(history.go(0));
   };
 
   return (
     <RestaurantContext.Provider
       value={{
         restaurant,
+        form,
         restaurantToken,
         formSubmit,
         generalChangeRestaurant,

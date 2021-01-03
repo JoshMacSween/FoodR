@@ -28,8 +28,9 @@ export default function VendorList() {
           <Row key={i}>
             <Col className="text-center mb-2">
               <Card>
-                <Card.Header>{restaurant.name}</Card.Header>
                 <Card.Body>
+                  <Card.Title>{restaurant.name}</Card.Title>
+                  <Card.Subtitle>{restaurant.style}</Card.Subtitle>
                   <Card.Text>
                     {restaurant.description ? (
                       restaurant.description
