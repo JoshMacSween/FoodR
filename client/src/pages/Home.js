@@ -37,6 +37,7 @@ export default function Home() {
         </Col>
       </Row>
       <Row className="mt-3">
+        
         <Col>
           <LinkContainer to="/Partner">
             <Button block>Register Your Business</Button>

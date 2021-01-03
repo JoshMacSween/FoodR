@@ -11,6 +11,23 @@ export default function RestaurantProvider(props) {
     dishes: [],
   });
 
+  const [restaurantToken, setRestaurantToken] = useState("");
+
+  useEffect(() => {
+    const data = localStorage.getItem("restaurantData");
+    if (data) {
+      setRestaurant(JSON.parse(data));
+    }
+    console.log(restaurant);
+  }, []);
+
+  useEffect(() => {
+    const data = localStorage.getItem("restaurantToken");
+    if (data) {
+      setRestaurantToken(JSON.parse(data));
+    }
+  });
+
   const formSubmit = async form => {
     return await axios.post("http://localhost:5000/restaurants/", form);
   };
@@ -41,6 +58,7 @@ export default function RestaurantProvider(props) {
     <RestaurantContext.Provider
       value={{
         restaurant,
+        restaurantToken,
         formSubmit,
         generalChangeRestaurant,
         loginRestaurant,
