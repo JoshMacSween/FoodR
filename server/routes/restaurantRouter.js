@@ -74,18 +74,36 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Add Restaurant Details
-router.put("/:id", async (req, res) => {
+// Adding dishes
+router.post("/:id", async (req, res) => {
   try {
-    const data = req.body;
+    const { name, price, description, email } = req.body;
     const id = req.params.id;
-    const options = { new: true };
-    const result = await Restaurant.findByIdAndUpdate(id, data, options);
-    res.status(201).json({success: true, result})
+    const restaurant = await Restaurant.findOne({ email: email });
+
+    restaurant.dishes.push({
+      name: name,
+      price: price,
+      description: description,
+    });
+    const newDish = await restaurant.save();
+    res.status(201).json({ success: true, newDish });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
   }
 });
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const data = req.body;
+//     const id = req.params.id;
+//     const options = { new: true };
+//     const result = await Restaurant.findById(id, data, options);
+//     res.status(201).json({success: true, result})
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 module.exports = router;

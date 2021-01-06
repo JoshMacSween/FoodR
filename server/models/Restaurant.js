@@ -5,10 +5,12 @@ const dishSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // price: {
-  //   type: Number,
-  //   required: true,
-  // },
+  price: {
+    type: Number,
+  },
+  description: {
+    type: String,
+  },
 });
 
 const restaurantSchema = new mongoose.Schema({
@@ -31,6 +33,7 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
   },
   dishes: [dishSchema],
+  //dishes: [{name: String}]
 });
 
 module.exports.restaurantSchema = restaurantSchema;

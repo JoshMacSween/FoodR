@@ -8,6 +8,7 @@ import VendorList from "./pages/VendorList";
 import LoginBusiness from "./pages/LoginBusiness";
 import RestaurantAdmin from "./pages/RestaurantAdmin";
 import RegisterSuccess from "./pages/RegisterSuccess";
+import RestaurantDetails from "./pages/RestaurantDetails";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/Partner" component={Partner} />
                 <Route path="/RestaurantAdmin" component={RestaurantAdmin} />
                 <Route path="/RegisterSuccess" component={RegisterSuccess} />
+                <Route path="/RestaurantDetails" component={RestaurantDetails} />
               </div>
             </Container>
           </UserProvider>
