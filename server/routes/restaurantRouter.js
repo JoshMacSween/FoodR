@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Restaurant } = require("../models/Restaurant");
+const { Restaurant, Dish } = require("../models/Restaurant");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
@@ -77,9 +77,9 @@ router.post("/", async (req, res) => {
 // Adding dishes
 router.post("/:id", async (req, res) => {
   try {
-    const { name, price, description, email } = req.body;
     const id = req.params.id;
-    const restaurant = await Restaurant.findOne({ email: email });
+    const { email, name, price, description } = req.body;
+    const restaurant = await Restaurant.findById({ _id: id });
 
     restaurant.dishes.push({
       name: name,
@@ -105,5 +105,29 @@ router.post("/:id", async (req, res) => {
 //     res.status(500).json({ message: error.message });
 //   }
 // });
+
+//Deleting Dishes
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { dishId } = req.body;
+    console.log(dishId);
+    const restaurant = await Restaurant.findOneAndUpdate(
+      { _id: id },
+      {
+        $pull: {
+          dishes: {
+            _id: dishId,
+          },
+        },
+      }
+    );
+
+    res.status(201).json({ success: true, restaurant });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+});
 
 module.exports = router;
