@@ -4,7 +4,7 @@ import { RestaurantContext } from "../contexts/RestaurantProvider";
 import axios from "axios";
 
 export default function LoginBusiness() {
-  const { restaurant, form, setRestaurant, loginRestaurant, generalChangeRestaurant } = useContext(RestaurantContext);
+  const { form, loginRestaurant, generalChangeRestaurant } = useContext(RestaurantContext);
 
   return (
     <Container>

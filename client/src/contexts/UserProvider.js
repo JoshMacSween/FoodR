@@ -35,15 +35,10 @@ export default function UserProvider(props) {
 
   const loginUser = async () => {
     axios
-      .post("http://localhost:5000/users/login", {
-        email: user.email,
-        password: user.password,
-      })
+      .post("http://localhost:5000/users/login", form)
       .then(response => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userData", JSON.stringify(response.data.user));
-        history.push("/RestaurantList");
-        history.go(0);
       })
 
       .catch(err => {
@@ -70,7 +65,7 @@ export default function UserProvider(props) {
   }
 
   const generalChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   function handleChangeFavourites(e) {

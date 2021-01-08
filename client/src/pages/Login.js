@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Login() {
   const {
     generalChange,
+    form,
     loginUser,
     token,
     setToken,
@@ -28,16 +29,18 @@ export default function Login() {
       >
         <Form.Label>Email</Form.Label>
         <Form.Control
-          onChange={handleChangeEmail}
-          value={user.email}
           type="email"
+          name="email"
+          value={form.email}
+          onChange={generalChange}
         />
 
         <Form.Label>Password</Form.Label>
         <Form.Control
-          onChange={handleChangePassword}
-          value={user.password}
           type="password"
+          name="password"
+          value={form.password}
+          onChange={generalChange}
         />
 
         <Button type="submit" block>
