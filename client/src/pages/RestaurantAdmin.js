@@ -11,6 +11,7 @@ import {
 import { UserContext } from "../contexts/UserProvider";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import axios from "axios";
+import DishModal from "../components/DishModal";
 
 export default function RestaurantAdmin() {
   const { error, setError, history } = useContext(UserContext);
@@ -22,8 +23,8 @@ export default function RestaurantAdmin() {
   } = useContext(RestaurantContext);
 
   const [dishes, setDishes] = useState([{ name: "" }]);
-  const formSubmitPut = async form => {
-    return await axios.put(
+  const formSubmit = async form => {
+    return await axios.post(
       `http://localhost:5000/restaurants/${restaurant.id}`,
       form
     );
@@ -33,15 +34,21 @@ export default function RestaurantAdmin() {
     setDishes([...dishes, { name: " " }]);
   };
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Container>
+      {show && <DishModal show={show} handleClose={handleClose}/> }
       <h3>Add Details About {restaurant.name}</h3>
       <Form
         className="mt-3"
         onSubmit={async e => {
           e.preventDefault();
           try {
-            const response = await formSubmitPut({ ...form, restaurant, dishes });
+            const response = await formSubmit({ ...form, restaurant, dishes });
             console.log(response);
             setError(null);
           } catch (error) {
@@ -89,7 +96,7 @@ export default function RestaurantAdmin() {
               <Form.Label>Add more dishes</Form.Label>
             </Card.Title>
 
-            {dishes.map((dish, i) => {
+            {/* {dishes.map((dish, i) => {
               return (
                 <Form.Control
                   key={i}
@@ -105,8 +112,8 @@ export default function RestaurantAdmin() {
                   name={`dishes-${i}`}
                 />
               );
-            })}
-            <Button onClick={addDish}>Add another</Button>
+            })} */}
+            <Button onClick={handleShow} >Add Dish</Button>
             <Button type="submit">Submit</Button>
           </Card.Body>
         </Card>
