@@ -58,7 +58,7 @@ export default function RestaurantAdmin() {
       >
         <Card>
           <Card.Body>
-            <Form.Group>
+            {/* <Form.Group>
               <Card.Title>Style of Food</Card.Title>
               <Form.Control
                 value={form.style}
@@ -83,7 +83,7 @@ export default function RestaurantAdmin() {
                 name="description"
                 as="textarea"
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Card.Title className="mt-3">Your Dishes</Card.Title>
 
@@ -114,7 +114,6 @@ export default function RestaurantAdmin() {
               );
             })} */}
             <Button onClick={handleShow} >Add Dish</Button>
-            <Button type="submit">Submit</Button>
           </Card.Body>
         </Card>
       </Form>
