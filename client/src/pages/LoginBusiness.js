@@ -4,7 +4,7 @@ import { RestaurantContext } from "../contexts/RestaurantProvider";
 import axios from "axios";
 
 export default function LoginBusiness() {
-  const { restaurant, setRestaurant, loginRestaurant, generalChangeRestaurant } = useContext(RestaurantContext);
+  const { restaurant, form, setRestaurant, loginRestaurant, generalChangeRestaurant } = useContext(RestaurantContext);
 
   return (
     <Container>
@@ -17,18 +17,18 @@ export default function LoginBusiness() {
       >
         <Form.Label>Email</Form.Label>
         <Form.Control
-          onChange={generalChangeRestaurant}
-          value={restaurant.email}
           type="email"
           name="email"
+          value={form.email}
+          onChange={generalChangeRestaurant}
         />
 
         <Form.Label>Password</Form.Label>
         <Form.Control
-          onChange={generalChangeRestaurant}
-          value={restaurant.password}
           type="password"
           name="password"
+          value={form.password}
+          onChange={generalChangeRestaurant}
         />
 
         <Button type="submit" block>

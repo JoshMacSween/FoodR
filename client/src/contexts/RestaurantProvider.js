@@ -35,15 +35,12 @@ export default function RestaurantProvider(props) {
   };
 
   const generalChangeRestaurant = e => {
-    setForm({ ...restaurant, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const loginRestaurant = async () => {
     axios
-      .post("http://localhost:5000/restaurants/login", {
-        email: restaurant.email,
-        password: restaurant.password,
-      })
+      .post("http://localhost:5000/restaurants/login", form)
       .then(response => {
         localStorage.setItem(
           "restaurantToken",
