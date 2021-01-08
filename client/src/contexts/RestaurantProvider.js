@@ -49,10 +49,10 @@ export default function RestaurantProvider(props) {
         localStorage.setItem(
           "restaurantData",
           JSON.stringify(response.data.restaurant)
-        );
-      });
-    // .then(history.push("/RestaurantAdmin"))
-    // .then(history.go(0));
+        )
+        history.push("/RestaurantAdmin")
+        history.go(0)
+      })
   };
 
   return (

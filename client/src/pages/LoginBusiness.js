@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
-import axios from "axios";
 
 export default function LoginBusiness() {
   const { form, loginRestaurant, generalChangeRestaurant } = useContext(RestaurantContext);
