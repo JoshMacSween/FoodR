@@ -12,7 +12,7 @@ export default function VendorList() {
     restaurants.map(restaurant => {
       return setRestaurantList([...restaurants], restaurant);
     });
-    console.log(restaurantList);
+    // console.log(restaurantList);
   }
 
   useEffect(() => {

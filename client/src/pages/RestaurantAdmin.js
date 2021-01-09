@@ -17,18 +17,30 @@ export default function RestaurantAdmin() {
   const { error, setError, history } = useContext(UserContext);
   const {
     restaurant,
+    dishes,
+    setDishes,
     setRestaurant,
     form,
     generalChangeRestaurant,
   } = useContext(RestaurantContext);
 
-  const [dishes, setDishes] = useState([{ name: "" }]);
   const formSubmit = async form => {
     return await axios.post(
       `http://localhost:5000/restaurants/${restaurant.id}`,
       form
     );
   };
+
+  useEffect(() => {
+    console.log("We realoded dishes")
+    async function fetchDishes() {
+      const result = await axios
+      .get(`http://localhost:5000/restaurants/${restaurant.id}`)
+        .then(response => {
+          setDishes(response.data.restaurant.dishes)
+        });
+    }
+  }, []);
 
   const addDish = () => {
     setDishes([...dishes, { name: " " }]);
@@ -41,7 +53,12 @@ export default function RestaurantAdmin() {
 
   return (
     <Container>
-      {show && <DishModal show={show} handleClose={handleClose}/> }
+      {show && (
+        <DishModal
+          show={show}
+          handleClose={handleClose}
+        />
+      )}
       <h3>Add Details About {restaurant.name}</h3>
       <Form
         className="mt-3"
@@ -86,10 +103,17 @@ export default function RestaurantAdmin() {
             </Form.Group> */}
 
             <Card.Title className="mt-3">Your Dishes</Card.Title>
+            {console.log(dishes)}
 
             <ListGroup>
-              <ListGroup.Item>Burger</ListGroup.Item>
-              <ListGroup.Item>Fries</ListGroup.Item>
+              {/* {console.log(restaurant.dishes)} */}
+              {dishes.map((dish, i) => {
+                return (
+                  <ListGroup.Item key={i}>
+                    {dish.name} - ${dish.price}
+                  </ListGroup.Item>
+                );
+              })}
             </ListGroup>
 
             <Card.Title className="mt-3">
@@ -113,7 +137,7 @@ export default function RestaurantAdmin() {
                 />
               );
             })} */}
-            <Button onClick={handleShow} >Add Dish</Button>
+            <Button onClick={handleShow}>Add Dish</Button>
           </Card.Body>
         </Card>
       </Form>

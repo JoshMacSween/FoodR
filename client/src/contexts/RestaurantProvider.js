@@ -14,13 +14,16 @@ export default function RestaurantProvider(props) {
   const [form, setForm] = useState({});
   const history = useHistory();
   const [restaurantToken, setRestaurantToken] = useState("");
+  const [dishes, setDishes] = useState([{ name: "" }]);
 
   useEffect(() => {
     const data = localStorage.getItem("restaurantData");
     if (data) {
+      const restaurantData = JSON.parse(data)
       setRestaurant(JSON.parse(data));
+      setDishes(restaurantData.dishes);
     }
-    console.log(restaurant);
+    // console.log(restaurant);
   }, []);
 
   useEffect(() => {
@@ -29,6 +32,17 @@ export default function RestaurantProvider(props) {
       setRestaurantToken(JSON.parse(data));
     }
   }, []);
+
+  // useEffect(() => {
+  //   console.log("We realoded dishes")
+  //   async function fetchDishes() {
+  //     const result = await axios
+  //     .get(`http://localhost:5000/restaurants/${restaurant.id}`)
+  //       .then(response => {
+  //         setDishes(response.data.restaurant.dishes)
+  //       });
+  //   }
+  // }, []);
 
   const formSubmit = async form => {
     return await axios.post("http://localhost:5000/restaurants/", form);
@@ -49,16 +63,18 @@ export default function RestaurantProvider(props) {
         localStorage.setItem(
           "restaurantData",
           JSON.stringify(response.data.restaurant)
-        )
-        history.push("/RestaurantAdmin")
-        history.go(0)
-      })
+        );
+        history.push("/RestaurantAdmin");
+        history.go(0);
+      });
   };
 
   return (
     <RestaurantContext.Provider
       value={{
         restaurant,
+        dishes,
+        setDishes,
         form,
         restaurantToken,
         formSubmit,

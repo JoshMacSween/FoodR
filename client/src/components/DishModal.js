@@ -10,15 +10,18 @@ import {
 } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { UserContext } from "../contexts/UserProvider";
-import axios from 'axios'
+import axios from "axios";
 
 export default function DishModal({ handleClose, show }) {
-  const { form, generalChangeRestaurant, restaurant } = useContext(
-    RestaurantContext
-  );
+  const {
+    form,
+    dishes,
+    setDishes,
+    generalChangeRestaurant,
+    restaurant,
+    setRestaurant,
+  } = useContext(RestaurantContext);
   const { error, setError, history } = useContext(UserContext);
-
-  const [dishes, setDishes] = useState([{ name: "" }]);
 
   const formSubmit = async form => {
     return await axios.post(
@@ -27,8 +30,7 @@ export default function DishModal({ handleClose, show }) {
     );
   };
 
-  const email = restaurant.email
-  
+  const email = restaurant.email;
   return (
     <Modal show={show} onHide={handleClose}>
       <Card>
@@ -42,7 +44,10 @@ export default function DishModal({ handleClose, show }) {
               e.preventDefault();
               try {
                 const response = await formSubmit({ ...form, email });
+                console.log("Hi");
                 console.log(response);
+                setDishes(response.data.newDish.dishes);
+                handleClose();
               } catch (error) {
                 setError("Something went wrong, please try again");
               }
@@ -93,7 +98,6 @@ export default function DishModal({ handleClose, show }) {
           </Form>
         </Card.Body>
       </Card>
-
     </Modal>
   );
 }

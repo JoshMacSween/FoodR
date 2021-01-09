@@ -26,7 +26,7 @@ export default function Register() {
           e.preventDefault();
           try {
             const response = await formSubmit({ ...form });
-            console.log(response);
+            // console.log(response);
             setError(null);
             history.push("/RegisterSuccess");
           } catch (error) {
