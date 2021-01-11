@@ -38,7 +38,7 @@ export default function RestaurantProvider(props) {
         });
     }
     fetchRestaurant();
-  }, []);
+  }, [dishes]);
 
   // useEffect(() => {
   //   const data = localStorage.getItem("restaurantData");
@@ -58,14 +58,18 @@ export default function RestaurantProvider(props) {
   //   }
   // }, []);
 
-
-  const removeItem = async (dish) => {
+  const removeItem = async dish => {
     const dishId = dish._id;
-    const result = await axios.delete(
-      `http://localhost:5000/restaurants/delete/`,
-      { data: { dishId, restId } }
-    );
-    history.go(0)
+    const result = await axios
+      .delete(`http://localhost:5000/restaurants/delete/`, {
+        data: { dishId, restId },
+      })
+      .then(() => {
+        setDishes(...dishes, dishes.filter((dishes) => {
+          return dishes !== dishId
+        }) );
+        console.log(dishes)
+      });
   };
 
   const formSubmit = async form => {

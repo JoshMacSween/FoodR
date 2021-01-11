@@ -41,14 +41,14 @@ export default function DishModal({ handleClose, show, restId }) {
           <h4>{error ? error : ""}</h4>
           <Form
             onSubmit={async e => {
-              e.preventDefault(); 
+              e.preventDefault();
               try {
                 const response = await formSubmit({ ...form, email });
                 console.log("Hi");
                 console.log(response);
                 setDishes(response.data.newDish.dishes);
                 handleClose();
-                history.go(0)
+                // history.go(0)
               } catch (error) {
                 setError("Something went wrong, please try again");
               }
