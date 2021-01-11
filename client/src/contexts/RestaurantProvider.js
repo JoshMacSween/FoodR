@@ -16,15 +16,11 @@ export default function RestaurantProvider(props) {
   const [restaurantToken, setRestaurantToken] = useState("");
   const [dishes, setDishes] = useState([{ name: "" }]);
 
-  useEffect(() => {
-    const data = localStorage.getItem("restaurantData");
-    if (data) {
-      const restaurantData = JSON.parse(data)
-      setRestaurant(JSON.parse(data));
-      setDishes(restaurantData.dishes);
-    }
-    // console.log(restaurant);
-  }, []);
+  const [restId, setRestId] = useState(() => {
+    const value = localStorage.getItem("restaurantId");
+
+    return value !== null ? JSON.parse(value) : null
+  });
 
   useEffect(() => {
     const data = localStorage.getItem("restaurantToken");
@@ -32,6 +28,24 @@ export default function RestaurantProvider(props) {
       setRestaurantToken(JSON.parse(data));
     }
   }, []);
+
+  useEffect(() => {
+    async function fetchRestaurant() {
+      const result = await axios.get(
+        `http://localhost:5000/restaurants/${restId}`
+      ).then((response) => {
+        setRestaurant(response.data.restaurant)
+      })
+    }
+    fetchRestaurant()
+  }, []);
+
+  // useEffect(() => {
+  //   const data = localStorage.getItem("restaurantData");
+  //   if (data) {
+  //     setRestaurant(JSON.parse(data));
+  //   }
+  // }, [restaurant]);
 
   // useEffect(() => {
   //   console.log("We realoded dishes")
@@ -64,6 +78,10 @@ export default function RestaurantProvider(props) {
           "restaurantData",
           JSON.stringify(response.data.restaurant)
         );
+        localStorage.setItem(
+          "restaurantId",
+          JSON.stringify(response.data.restaurant.id)
+        );
         history.push("/RestaurantAdmin");
         history.go(0);
       });
@@ -72,7 +90,9 @@ export default function RestaurantProvider(props) {
   return (
     <RestaurantContext.Provider
       value={{
+        restId,
         restaurant,
+        setRestaurant,
         dishes,
         setDishes,
         form,

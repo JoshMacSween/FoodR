@@ -12,7 +12,7 @@ import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { UserContext } from "../contexts/UserProvider";
 import axios from "axios";
 
-export default function DishModal({ handleClose, show }) {
+export default function DishModal({ handleClose, show, restId }) {
   const {
     form,
     dishes,
@@ -25,7 +25,7 @@ export default function DishModal({ handleClose, show }) {
 
   const formSubmit = async form => {
     return await axios.post(
-      `http://localhost:5000/restaurants/${restaurant.id}`,
+      `http://localhost:5000/restaurants/${restId}`,
       form
     );
   };
@@ -41,13 +41,14 @@ export default function DishModal({ handleClose, show }) {
           <h4>{error ? error : ""}</h4>
           <Form
             onSubmit={async e => {
-              e.preventDefault();
+              e.preventDefault(); 
               try {
                 const response = await formSubmit({ ...form, email });
                 console.log("Hi");
                 console.log(response);
                 setDishes(response.data.newDish.dishes);
                 handleClose();
+                history.go(0)
               } catch (error) {
                 setError("Something went wrong, please try again");
               }

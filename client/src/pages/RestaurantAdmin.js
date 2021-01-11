@@ -17,6 +17,7 @@ export default function RestaurantAdmin() {
   const { error, setError, history } = useContext(UserContext);
   const {
     restaurant,
+    restId,
     dishes,
     setDishes,
     setRestaurant,
@@ -26,21 +27,58 @@ export default function RestaurantAdmin() {
 
   const formSubmit = async form => {
     return await axios.post(
-      `http://localhost:5000/restaurants/${restaurant.id}`,
+      `http://localhost:5000/restaurants/${restId}`,
       form
     );
   };
+  console.log(restId);
+
+  // const [restId, setRestId] = useState(restaurantData.id);
+
+  // useEffect(() => {
+  //   console.log("We reloaded dishes");
+  //   async function idSetter() {
+  //     const data = localStorage.getItem("restaurantData");
+  //     if (data) {
+  //       const fetched = JSON.parse(data);
+  //     }
+
+  //   }
+  //   idSetter();
+  // }, []);
 
   useEffect(() => {
-    console.log("We realoded dishes")
-    async function fetchDishes() {
+    async function fetchRestaurant() {
+      console.log(restId);
+      const url = `http://localhost:5000/restaurants/${restId}`;
+      console.log(url);
       const result = await axios
-      .get(`http://localhost:5000/restaurants/${restaurant.id}`)
+        .get(`http://localhost:5000/restaurants/${restId}`)
         .then(response => {
-          setDishes(response.data.restaurant.dishes)
+          console.log(response);
+          // setDishes(response.data.restaurant.dishes);
+          // console.log(response.data);
         });
     }
+    fetchRestaurant();
   }, []);
+
+  restaurant.dishes.map(dish => {
+    return setDishes(dish);
+  });
+
+  // useEffect(() => {
+  //   async function fetchDishes() {
+  //     console.log(restId);
+  //     const result = await axios
+  //       .get(`http://localhost:5000/restaurants/${restId}`)
+  //       .then(response => {
+  //         console.log(response);
+  //         setDishes(response.data.restaurant.dishes);
+  //       });
+  //   }
+  //   fetchDishes();
+  // }, []);
 
   const addDish = () => {
     setDishes([...dishes, { name: " " }]);
@@ -54,10 +92,7 @@ export default function RestaurantAdmin() {
   return (
     <Container>
       {show && (
-        <DishModal
-          show={show}
-          handleClose={handleClose}
-        />
+        <DishModal show={show} handleClose={handleClose} restId={restId} />
       )}
       <h3>Add Details About {restaurant.name}</h3>
       <Form
@@ -103,11 +138,10 @@ export default function RestaurantAdmin() {
             </Form.Group> */}
 
             <Card.Title className="mt-3">Your Dishes</Card.Title>
-            {console.log(dishes)}
 
             <ListGroup>
-              {/* {console.log(restaurant.dishes)} */}
-              {dishes.map((dish, i) => {
+              {console.log(dishes)}
+              {restaurant.dishes.map((dish, i) => {
                 return (
                   <ListGroup.Item key={i}>
                     {dish.name} - ${dish.price}
