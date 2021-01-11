@@ -14,7 +14,6 @@ export default function VendorList() {
     restaurants.map(restaurant => {
       return setRestaurantList([...restaurants], restaurant);
     });
-
   }
 
   useEffect(() => {
@@ -31,25 +30,21 @@ export default function VendorList() {
             <Col className="text-center mb-2">
               <Card>
                 {/* <LinkContainer to="/RestaurantLanding"> */}
-                <Link to={{
-                  pathname: "/RestaurantLanding",
-                  state: {restaurant}
-                }}>
-                <Card.Body>
-                  <Card.Title>{restaurant.name}</Card.Title>
-                  <Card.Subtitle>{restaurant.style}</Card.Subtitle>
-                  <Card.Text>
-                    {restaurant.description ? (
-                      restaurant.description
-                    ) : (
-                      <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Nesciunt reiciendis nulla esse necessitatibus,
-                        deleniti illum.
-                      </p>
-                    )}
-                  </Card.Text>
-                </Card.Body>
+                <Link
+                  to={{
+                    pathname: "/RestaurantLanding",
+                    state: { restaurant },
+                  }}
+                >
+                  <Card.Body>
+                    <Card.Title>{restaurant.name}</Card.Title>
+                    <Card.Subtitle>{restaurant.style}</Card.Subtitle>
+                    <Card.Text>
+                      {restaurant.description
+                        ? restaurant.description
+                        : "No description yet for this restaurant."}
+                    </Card.Text>
+                  </Card.Body>
                 </Link>
               </Card>
             </Col>
