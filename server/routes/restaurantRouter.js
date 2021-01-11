@@ -107,13 +107,12 @@ router.post("/:id", async (req, res) => {
 // });
 
 //Deleting Dishes
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/", async (req, res) => {
   try {
-    const id = req.params.id;
-    const { dishId } = req.body;
+    const { dishId, restId } = req.body;
     console.log(dishId);
     const restaurant = await Restaurant.findOneAndUpdate(
-      { _id: id },
+      { _id: restId },
       {
         $pull: {
           dishes: {

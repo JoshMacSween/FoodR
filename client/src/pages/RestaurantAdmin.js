@@ -12,6 +12,7 @@ import { UserContext } from "../contexts/UserProvider";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import axios from "axios";
 import DishModal from "../components/DishModal";
+import { CloseOutlined } from "@ant-design/icons";
 
 export default function RestaurantAdmin() {
   const { error, setError, history } = useContext(UserContext);
@@ -23,6 +24,7 @@ export default function RestaurantAdmin() {
     setRestaurant,
     form,
     generalChangeRestaurant,
+    removeItem,
   } = useContext(RestaurantContext);
 
   const formSubmit = async form => {
@@ -31,7 +33,6 @@ export default function RestaurantAdmin() {
       form
     );
   };
-  console.log(restId);
 
   // const [restId, setRestId] = useState(restaurantData.id);
 
@@ -47,25 +48,34 @@ export default function RestaurantAdmin() {
   //   idSetter();
   // }, []);
 
+  // useEffect(() => {
+  //   async function fetchRestaurant() {
+  //     console.log(restId);
+  //     const url = `http://localhost:5000/restaurants/${restId}`;
+  //     console.log(url);
+  //     const result = await axios
+  //       .get(`http://localhost:5000/restaurants/${restId}`)
+  //       .then(response => {
+  //         console.log(response);
+  //         // setDishes(response.data.restaurant.dishes);
+  //         // console.log(response.data);
+  //       });
+  //   }
+  //   fetchRestaurant();
+  // }, []);
+
   useEffect(() => {
-    async function fetchRestaurant() {
-      console.log(restId);
-      const url = `http://localhost:5000/restaurants/${restId}`;
-      console.log(url);
-      const result = await axios
-        .get(`http://localhost:5000/restaurants/${restId}`)
-        .then(response => {
-          console.log(response);
-          // setDishes(response.data.restaurant.dishes);
-          // console.log(response.data);
-        });
-    }
-    fetchRestaurant();
+    restaurant.dishes.map(dish => {
+      return setDishes(dish);
+    });
   }, []);
 
-  restaurant.dishes.map(dish => {
-    return setDishes(dish);
-  });
+  // const [dishId, setDishId] = useState([])
+  //   restaurant.dishes.map((dish) => {
+  //     const dishId = dish._id
+  //     setDishId({dishId})
+  //     return console.log(dishId)
+  //   })
 
   // useEffect(() => {
   //   async function fetchDishes() {
@@ -95,6 +105,7 @@ export default function RestaurantAdmin() {
         <DishModal show={show} handleClose={handleClose} restId={restId} />
       )}
       <h3>Add Details About {restaurant.name}</h3>
+
       <Form
         className="mt-3"
         onSubmit={async e => {
@@ -140,11 +151,17 @@ export default function RestaurantAdmin() {
             <Card.Title className="mt-3">Your Dishes</Card.Title>
 
             <ListGroup>
-              {console.log(dishes)}
               {restaurant.dishes.map((dish, i) => {
                 return (
                   <ListGroup.Item key={i}>
-                    {dish.name} - ${dish.price}
+                    {dish.name} - ${dish.price} - id: {dish._id}
+                    <Button
+                      onClick={() => removeItem(dish)}
+                      className="sm"
+                      style={{ float: "right", padding: "none" }}
+                    >
+                      x
+                    </Button>
                   </ListGroup.Item>
                 );
               })}

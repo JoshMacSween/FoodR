@@ -19,7 +19,7 @@ export default function RestaurantProvider(props) {
   const [restId, setRestId] = useState(() => {
     const value = localStorage.getItem("restaurantId");
 
-    return value !== null ? JSON.parse(value) : null
+    return value !== null ? JSON.parse(value) : "Hi";
   });
 
   useEffect(() => {
@@ -31,13 +31,13 @@ export default function RestaurantProvider(props) {
 
   useEffect(() => {
     async function fetchRestaurant() {
-      const result = await axios.get(
-        `http://localhost:5000/restaurants/${restId}`
-      ).then((response) => {
-        setRestaurant(response.data.restaurant)
-      })
+      const result = await axios
+        .get(`http://localhost:5000/restaurants/${restId}`)
+        .then(response => {
+          setRestaurant(response.data.restaurant);
+        });
     }
-    fetchRestaurant()
+    fetchRestaurant();
   }, []);
 
   // useEffect(() => {
@@ -57,6 +57,16 @@ export default function RestaurantProvider(props) {
   //       });
   //   }
   // }, []);
+
+
+  const removeItem = async (dish) => {
+    const dishId = dish._id;
+    const result = await axios.delete(
+      `http://localhost:5000/restaurants/delete/`,
+      { data: { dishId, restId } }
+    );
+    history.go(0)
+  };
 
   const formSubmit = async form => {
     return await axios.post("http://localhost:5000/restaurants/", form);
@@ -91,6 +101,7 @@ export default function RestaurantProvider(props) {
     <RestaurantContext.Provider
       value={{
         restId,
+        removeItem,
         restaurant,
         setRestaurant,
         dishes,
