@@ -154,7 +154,7 @@ export default function RestaurantAdmin() {
               {restaurant.dishes.map((dish, i) => {
                 return (
                   <ListGroup.Item key={i}>
-                    {dish.name} - ${dish.price} - id: {dish._id}
+                    {dish.name} - ${dish.price}
                     <Button
                       onClick={() => removeItem(dish)}
                       className="sm"

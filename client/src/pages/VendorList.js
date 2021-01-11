@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 export default function VendorList() {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -12,7 +14,7 @@ export default function VendorList() {
     restaurants.map(restaurant => {
       return setRestaurantList([...restaurants], restaurant);
     });
-    // console.log(restaurantList);
+
   }
 
   useEffect(() => {
@@ -28,6 +30,11 @@ export default function VendorList() {
           <Row key={i}>
             <Col className="text-center mb-2">
               <Card>
+                {/* <LinkContainer to="/RestaurantLanding"> */}
+                <Link to={{
+                  pathname: "/RestaurantLanding",
+                  state: {restaurant}
+                }}>
                 <Card.Body>
                   <Card.Title>{restaurant.name}</Card.Title>
                   <Card.Subtitle>{restaurant.style}</Card.Subtitle>
@@ -43,6 +50,7 @@ export default function VendorList() {
                     )}
                   </Card.Text>
                 </Card.Body>
+                </Link>
               </Card>
             </Col>
           </Row>

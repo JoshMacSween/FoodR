@@ -9,6 +9,8 @@ import LoginBusiness from "./pages/LoginBusiness";
 import RestaurantAdmin from "./pages/RestaurantAdmin";
 import RegisterSuccess from "./pages/RegisterSuccess";
 import RestaurantDetails from "./pages/RestaurantDetails";
+import RestaurantLanding from "./pages/RestaurantLanding";
+
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -35,6 +37,7 @@ function App() {
                 <Route path="/RestaurantAdmin" component={RestaurantAdmin} />
                 <Route path="/RegisterSuccess" component={RegisterSuccess} />
                 <Route path="/RestaurantDetails" component={RestaurantDetails} />
+                <Route path="/RestaurantLanding" component={RestaurantLanding} />
               </div>
             </Container>
           </UserProvider>
