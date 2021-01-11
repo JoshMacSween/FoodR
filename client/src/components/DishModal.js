@@ -12,16 +12,16 @@ import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { UserContext } from "../contexts/UserProvider";
 import axios from "axios";
 
-export default function DishModal({ handleClose, show, restId }) {
+export default function DishModal({ restId }) {
   const {
     form,
-    dishes,
     setDishes,
     generalChangeRestaurant,
     restaurant,
-    setRestaurant,
+    show,
+    handleClose,
   } = useContext(RestaurantContext);
-  const { error, setError, history } = useContext(UserContext);
+  const { error, setError } = useContext(UserContext);
 
   const formSubmit = async form => {
     return await axios.post(
@@ -48,7 +48,6 @@ export default function DishModal({ handleClose, show, restId }) {
                 console.log(response);
                 setDishes(response.data.newDish.dishes);
                 handleClose();
-                // history.go(0)
               } catch (error) {
                 setError("Something went wrong, please try again");
               }

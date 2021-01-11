@@ -25,6 +25,9 @@ export default function RestaurantAdmin() {
     form,
     generalChangeRestaurant,
     removeItem,
+    show,
+    handleClose,
+    handleShow
   } = useContext(RestaurantContext);
 
   const formSubmit = async form => {
@@ -94,16 +97,9 @@ export default function RestaurantAdmin() {
     setDishes([...dishes, { name: " " }]);
   };
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   return (
     <Container>
-      {show && (
-        <DishModal show={show} handleClose={handleClose} restId={restId} />
-      )}
+      {show && <DishModal restId={restId} />}
       <h3>Add Details About {restaurant.name}</h3>
 
       <Form

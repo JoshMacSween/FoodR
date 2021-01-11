@@ -12,12 +12,19 @@ export default function RestaurantLanding() {
 
       {restaurant.dishes.map((dish, i) => {
         return (
-          <Card key={i}>
+          <Card key={i} className="mb-3">
             <Card.Body>
               <Card.Title>
                 {dish.name}, ${dish.price}
               </Card.Title>
-              <Card.Text>{dish.description}</Card.Text>
+              <Row>
+                <Col>
+                  <Card.Text>{dish.description}</Card.Text>
+                </Col>
+                <Col>
+                  <Button variant="link" style={{marginLeft: "60%"}}>Add To Order</Button>
+                </Col>
+              </Row>
             </Card.Body>
           </Card>
         );

@@ -40,6 +40,11 @@ export default function RestaurantProvider(props) {
     fetchRestaurant();
   }, [dishes]);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   // useEffect(() => {
   //   const data = localStorage.getItem("restaurantData");
   //   if (data) {
@@ -65,10 +70,13 @@ export default function RestaurantProvider(props) {
         data: { dishId, restId },
       })
       .then(() => {
-        setDishes(...dishes, dishes.filter((dishes) => {
-          return dishes !== dishId
-        }) );
-        console.log(dishes)
+        setDishes(
+          ...dishes,
+          dishes.filter(dishes => {
+            return dishes !== dishId;
+          })
+        );
+        console.log(dishes);
       });
   };
 
@@ -115,6 +123,10 @@ export default function RestaurantProvider(props) {
         formSubmit,
         generalChangeRestaurant,
         loginRestaurant,
+        show,
+        setShow,
+        handleClose,
+        handleShow,
       }}
     >
       {props.children}
