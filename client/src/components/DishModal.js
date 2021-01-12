@@ -14,6 +14,7 @@ import axios from "axios";
 
 export default function DishModal({ restId }) {
   const {
+    dishes,
     form,
     setDishes,
     generalChangeRestaurant,
@@ -44,8 +45,6 @@ export default function DishModal({ restId }) {
               e.preventDefault();
               try {
                 const response = await formSubmit({ ...form, email });
-                console.log("Hi");
-                console.log(response);
                 setDishes(response.data.newDish.dishes);
                 handleClose();
               } catch (error) {

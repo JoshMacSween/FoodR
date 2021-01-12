@@ -152,7 +152,7 @@ export default function RestaurantAdmin() {
                   <ListGroup.Item key={i}>
                     {dish.name} - ${dish.price}
                     <Button
-                      onClick={() => removeItem(dish)}
+                      onClick={() => removeItem(dish, restaurant)}
                       className="sm"
                       style={{ float: "right", padding: "none" }}
                     >

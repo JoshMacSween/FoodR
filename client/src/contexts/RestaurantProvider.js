@@ -63,21 +63,25 @@ export default function RestaurantProvider(props) {
   //   }
   // }, []);
 
-  const removeItem = async dish => {
-    const dishId = dish._id;
-    const result = await axios
-      .delete(`http://localhost:5000/restaurants/delete/`, {
-        data: { dishId, restId },
-      })
-      .then(() => {
-        setDishes(
-          ...dishes,
-          dishes.filter(dishes => {
-            return dishes !== dishId;
-          })
-        );
-        console.log(dishes);
-      });
+  const removeItem = async (dish, restaurant) => {
+    try {
+      const dishId = dish._id;
+      const result = await axios
+        .delete(`http://localhost:5000/restaurants/delete/`, {
+          data: { dishId, restId },
+        })
+        .then(() => {
+          console.log(dishes);
+          setDishes(
+            ...restaurant.dishes,
+            restaurant.dishes.filter(dishes => {
+              return dishes !== dishId;
+            })
+          );
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const formSubmit = async form => {
