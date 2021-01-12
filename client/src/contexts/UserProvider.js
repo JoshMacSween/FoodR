@@ -8,7 +8,6 @@ export default function UserProvider(props) {
   const history = useHistory();
   const [form, setForm] = useState({});
   const [error, setError] = useState(null);
-
   const [token, setToken] = useState("");
   const [user, setUser] = useState({
     name: "",
@@ -16,6 +15,33 @@ export default function UserProvider(props) {
     password: "",
     favourites: [],
   });
+
+  const [cart, setCart] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0)
+
+  const addToCart = (dish) => {
+    setCart([...cart, dish]);
+  };
+
+  const cartItems = cart.map(item => {
+    return (
+      <div key={item.id}>
+        {item.name}, ${item.price}
+      </div>
+    );
+  });
+
+  useEffect(() => {
+    total()
+  }, [cart])
+
+  const total = () => {
+    let value = 0
+    for (let i = 0; i < cart.length; i++) {
+      value += cart[i].price
+    }
+    setCartTotal(value)
+  }
 
   useEffect(() => {
     const data = localStorage.getItem("token");
@@ -31,16 +57,14 @@ export default function UserProvider(props) {
     }
   }, []);
 
-
-
   const loginUser = async () => {
     axios
       .post("http://localhost:5000/users/login", form)
       .then(response => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userData", JSON.stringify(response.data.user));
-        history.push("/")
-        history.go(0)
+        history.push("/");
+        history.go(0);
       })
 
       .catch(err => {
@@ -49,12 +73,10 @@ export default function UserProvider(props) {
   };
 
   const logout = () => {
-    localStorage.clear()
+    localStorage.clear();
     history.push("/");
     history.go(0);
   };
-
-  const [allUsers, setAllUsers] = useState([]);
 
   const generalChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -72,6 +94,11 @@ export default function UserProvider(props) {
   return (
     <UserContext.Provider
       value={{
+        cartTotal,
+        cartItems,
+        addToCart,
+        cart,
+        setCart,
         history,
         form,
         setForm,
@@ -85,7 +112,6 @@ export default function UserProvider(props) {
         setToken,
         user,
         setUser,
-        allUsers,
       }}
     >
       {props.children}

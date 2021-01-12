@@ -21,7 +21,7 @@ export default function DishModal({ restId }) {
     show,
     handleClose,
   } = useContext(RestaurantContext);
-  const { error, setError } = useContext(UserContext);
+  const { error, setError, cart } = useContext(UserContext);
 
   const formSubmit = async form => {
     return await axios.post(

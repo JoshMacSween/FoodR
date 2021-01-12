@@ -9,9 +9,11 @@ import {
   Form,
 } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
+import { UserContext } from "../contexts/UserProvider";
 
-export default function CartModal({ show, handleClose }) {
-  const { error, cart } = useContext(RestaurantContext);
+export default function CartModal() {
+  const { show, handleClose, error } = useContext(RestaurantContext);
+  const { cartItems, cartTotal } = useContext(UserContext);
   return (
     <Modal show={show} onHide={handleClose}>
       <Card>
@@ -20,9 +22,10 @@ export default function CartModal({ show, handleClose }) {
             <Modal.Header closeButton>Your Cart</Modal.Header>
           </Card.Title>
           <h4>{error ? error : ""}</h4>
-          <Card.Text></Card.Text>
-
-          <Button type="submit">Submit</Button>
+          {cartItems}
+          <hr />
+          <Card.Subtitle className="mb-2">Total: ${cartTotal}</Card.Subtitle>
+          <Button type="submit" className="mr-2">Submit</Button>
           <Button onClick={handleClose}>Back</Button>
         </Card.Body>
       </Card>

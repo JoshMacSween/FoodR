@@ -1,15 +1,23 @@
 import React, { useContext } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Nav, Button } from "react-bootstrap";
 import { UserContext } from "../contexts/UserProvider";
+import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { LinkContainer } from "react-router-bootstrap";
-
+import CartModal from "./CartModal";
 
 export default function RestaurantNav() {
+  const { show, setShow } = useContext(RestaurantContext);
+
   return (
-    <div>
+    <>
       <LinkContainer to="/UserFavourites">
         <Nav.Link>Favourites</Nav.Link>
       </LinkContainer>
-    </div>
-  )
+
+      <Nav.Item onClick={() => setShow(true)}>Cart</Nav.Item>
+
+      {show && <CartModal />}
+
+    </>
+  );
 }

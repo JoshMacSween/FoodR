@@ -4,16 +4,13 @@ import { UserContext } from "../contexts/UserProvider";
 import Favouite from "../components/Favourite";
 
 export default function UserFavourites() {
-  const { user } = useContext(UserContext);
-
-  useEffect(() => {
-
-  }, [user])
+  const { user, cartItems } = useContext(UserContext);
 
   return (
     <Container>
       {user ? <h2>{user.name}'s Favourite Places To Eat</h2> : null}
-      {user && user.favourites ? (
+      {cartItems}
+      {/* {user && user.favourites ? (
         user.favourites.map(favourite => {
           return (
             <Row className="mb-3">
@@ -25,7 +22,7 @@ export default function UserFavourites() {
         })
       ) : (
         <h1>No Favourites For This User Yet</h1>
-      )}
+      )} */}
     </Container>
   );
 }
