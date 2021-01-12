@@ -82,9 +82,10 @@ router.post("/:id", async (req, res) => {
     const restaurant = await Restaurant.findById({ _id: id });
 
     restaurant.dishes.push({
-      name: name,
-      price: price,
-      description: description,
+      name,
+      price,
+      description,
+      restaurant: id,
     });
     const newDish = await restaurant.save();
     res.status(201).json({ success: true, newDish });

@@ -18,7 +18,6 @@ export default function RestaurantProvider(props) {
 
   const [restId, setRestId] = useState(() => {
     const value = localStorage.getItem("restaurantId");
-
     return value !== null ? JSON.parse(value) : null;
   });
 

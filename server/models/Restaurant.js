@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const dishSchema = new mongoose.Schema({
   name: {
@@ -11,6 +12,7 @@ const dishSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  restaurant: { type: Schema.Types.ObjectId, ref: "Restaurant" },
 });
 
 const restaurantSchema = new mongoose.Schema({
