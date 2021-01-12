@@ -9,7 +9,6 @@ export default function UserFavourites() {
   return (
     <Container>
       {user ? <h2>{user.name}'s Favourite Places To Eat</h2> : null}
-      {cartItems}
       {/* {user && user.favourites ? (
         user.favourites.map(favourite => {
           return (

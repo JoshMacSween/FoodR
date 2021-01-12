@@ -23,16 +23,17 @@ export default function UserProvider(props) {
     setCart([...cart, dish]);
   };
 
-  const cartItems = cart.map(item => {
-    return (
-      <div key={item.id}>
-        {item.name}, ${item.price}
-      </div>
-    );
-  });
+  // const cartItems = cart.map(item => {
+  //   return (
+  //     <div key={item.id}>
+  //       {item.name}, ${item.price}
+  //     </div>
+  //   );
+  // });
 
   useEffect(() => {
     total()
+    console.log(cart)
   }, [cart])
 
   const total = () => {
@@ -42,6 +43,18 @@ export default function UserProvider(props) {
     }
     setCartTotal(value)
   }
+
+  // const removeFromCart = (item) => {
+  //   setCart(...cart, cart.filter((cartItem) => cartItem.id !== item.id))
+  // }
+
+  const removeFromCart = (item) => {
+
+    let hardCopy = [...cart];
+    hardCopy = hardCopy.filter((cartItem) => cartItem._id !== item._id);
+    setCart(hardCopy);
+  };
+
 
   useEffect(() => {
     const data = localStorage.getItem("token");
@@ -94,8 +107,9 @@ export default function UserProvider(props) {
   return (
     <UserContext.Provider
       value={{
+        removeFromCart,
         cartTotal,
-        cartItems,
+        // cartItems,
         addToCart,
         cart,
         setCart,
