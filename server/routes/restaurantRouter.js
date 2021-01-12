@@ -61,11 +61,11 @@ router.post("/", async (req, res) => {
   try {
     const { name, email, password, address, dishes } = req.body;
     const restaurant = new Restaurant({
-      name: name,
-      email: email,
-      password: password,
-      address: address,
-      dishes: dishes,
+      name,
+      email,
+      password,
+      address,
+      dishes,
     });
     const newRestaurant = await restaurant.save();
     res.status(201).json({ success: true, newRestaurant });
@@ -128,5 +128,16 @@ router.delete("/delete/", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// placing an order
+// router.post("/order", async (req, res) => {
+//   try {
+//     const {userId, restId, dishes, total} = req.body
+//     const order = New Order(
+//     })
+//   } catch (error) {
+
+//   }
+// })
 
 module.exports = router;

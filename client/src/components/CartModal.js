@@ -36,7 +36,7 @@ export default function CartModal() {
 
                 <Col className="mb-2">
                   <Button
-                    onClick={() => removeFromCart(item, i)}
+                    onClick={() => removeFromCart(item)}
                     style={{ marginLeft: "60%" }}
                   >
                     x

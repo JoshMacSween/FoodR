@@ -17,9 +17,9 @@ export default function UserProvider(props) {
   });
 
   const [cart, setCart] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0)
+  const [cartTotal, setCartTotal] = useState(0);
 
-  const addToCart = (dish) => {
+  const addToCart = dish => {
     setCart([...cart, dish]);
   };
 
@@ -32,29 +32,23 @@ export default function UserProvider(props) {
   // });
 
   useEffect(() => {
-    total()
-    console.log(cart)
-  }, [cart])
+    total();
+    console.log(cart);
+  }, [cart]);
 
   const total = () => {
-    let value = 0
+    let value = 0;
     for (let i = 0; i < cart.length; i++) {
-      value += cart[i].price
+      value += cart[i].price;
     }
-    setCartTotal(value)
-  }
-
-  // const removeFromCart = (item) => {
-  //   setCart(...cart, cart.filter((cartItem) => cartItem.id !== item.id))
-  // }
-
-  const removeFromCart = (item) => {
-
-    let hardCopy = [...cart];
-    hardCopy = hardCopy.filter((cartItem) => cartItem._id !== item._id);
-    setCart(hardCopy);
+    setCartTotal(value);
   };
 
+  const removeFromCart = item => {
+    let cartArray = [...cart];
+    cartArray = cartArray.filter(cartItem => cartItem._id !== item._id);
+    setCart(cartArray);
+  };
 
   useEffect(() => {
     const data = localStorage.getItem("token");

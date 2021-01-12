@@ -33,3 +33,6 @@ app.use("/users", userRouter);
 
 const restaurantRouter = require("./routes/restaurantRouter");
 app.use("/restaurants", restaurantRouter);
+
+const orderRouter = require("./routes/orderRouter");
+app.use("/order", orderRouter);

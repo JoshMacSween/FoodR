@@ -17,7 +17,6 @@ const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    // unique: true,
     index: true,
   },
   email: {
@@ -33,9 +32,17 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
   },
   dishes: [dishSchema],
-  //dishes: [{name: String}]
 });
 
-module.exports.restaurantSchema = restaurantSchema;
-module.exports.Dish = mongoose.model("Dish", dishSchema)
-module.exports.Restaurant = mongoose.model("Restaurant", restaurantSchema);
+const Dish = mongoose.model("Dish", dishSchema);
+const Restaurant = mongoose.model("Restaurant", restaurantSchema);
+
+module.exports = {
+  Dish,
+  dishSchema,
+  Restaurant,
+  restaurantSchema,
+};
+
+// module.exports.Dish = mongoose.model("Dish", dishSchema);
+// module.exports.Restaurant = mongoose.model("Restaurant", restaurantSchema);
