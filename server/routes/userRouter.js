@@ -53,18 +53,20 @@ router.post("/login", async (req, res) => {
 router.post("/", async (req, res) => {
   const { name, email, password, favourites } = req.body;
   const user = new User({
-    name: name,
-    email: email,
-    password: password,
-    favourites: favourites,
+    name,
+    email,
+    password,
+    favourites,
   });
 
   if (!name || !email || !password) {
     res.status(400).json({ message: "Not all fields have been entered" });
   }
 
-  if (email === User.find({email: email})) {
-    res.status(400).json({message: "An account already exists for this email"})
+  if (email === User.find({ email: email })) {
+    res
+      .status(400)
+      .json({ message: "An account already exists for this email" });
   }
 
   try {

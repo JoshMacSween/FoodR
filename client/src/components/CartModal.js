@@ -1,3 +1,4 @@
+import Axios from "axios";
 import React, { useContext } from "react";
 import {
   Row,
@@ -10,12 +11,17 @@ import {
 } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { UserContext } from "../contexts/UserProvider";
+import axios from 'axios'
 
 export default function CartModal() {
   const { show, handleClose, error } = useContext(RestaurantContext);
-  const { cartItems, cart, cartTotal, removeFromCart } = useContext(
+  const { cartItems, cart, cartTotal, removeFromCart, user } = useContext(
     UserContext
   );
+
+  const submitOrder = async (cart) => {
+    return await axios.post("http://localhost:5000/order/", {cart, user})
+  }
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -48,7 +54,7 @@ export default function CartModal() {
 
           <hr />
           <Card.Subtitle className="mb-2">Total: ${cartTotal}</Card.Subtitle>
-          <Button type="submit" className="mr-2">
+          <Button onClick={() => submitOrder(cart, user)} type="submit" className="mr-2">
             Submit
           </Button>
           <Button onClick={handleClose}>Back</Button>

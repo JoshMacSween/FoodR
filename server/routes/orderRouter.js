@@ -5,24 +5,26 @@ const Order = require("../models/Order");
 
 // Creating an order
 router.post("/", async (req, res) => {
-  try {
-    const { user, restaurant, dishes, total, status } = req.body;
-    const order = new Order({
-      user,
-      dishes,
-    });
+  const { user, cart, restaurant, dishes, total, status } = req.body;
+  const order = new Order({
+    user: user.id,
+    cart,
+  });
 
+  if (!user) {
+    res.status(400).json({ message: "User object not provided" });
+  }
+
+  if (!cart) {
+    res.status(400).json({ message: "Cart object not provided" });
+  }
+
+  try {
     const newOrder = await order.save();
-    res.status(201).json({ success: true, newOrder });
+    res.status(201).json(newOrder);
   } catch (error) {
-    res
-      .status(500)
-      .json({ success: false, message: "Could not post new order" });
+    res.status(400).json({ message: error.message });
   }
 });
-
-// Completing an order
-
-// Cancelling an order
 
 module.exports = router;
