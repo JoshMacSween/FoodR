@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card, Jumbotron, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 export default function Home() {
   return (

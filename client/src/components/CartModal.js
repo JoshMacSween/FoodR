@@ -1,13 +1,10 @@
-import Axios from "axios";
 import React, { useContext } from "react";
 import {
   Row,
   Col,
-  Container,
   Card,
   Modal,
   Button,
-  Form,
 } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { UserContext } from "../contexts/UserProvider";
@@ -15,7 +12,7 @@ import axios from 'axios'
 
 export default function CartModal() {
   const { show, handleClose, error } = useContext(RestaurantContext);
-  const { cartItems, cart, cartTotal, removeFromCart, user } = useContext(
+  const { cart, cartTotal, removeFromCart, user } = useContext(
     UserContext
   );
 

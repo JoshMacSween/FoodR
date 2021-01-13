@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { Nav, Button } from "react-bootstrap";
-import { UserContext } from "../contexts/UserProvider";
+import { Nav } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { LinkContainer } from "react-router-bootstrap";
 import CartModal from "./CartModal";

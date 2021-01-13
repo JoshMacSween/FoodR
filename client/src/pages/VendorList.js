@@ -1,8 +1,7 @@
-import React, { useEffect, useContext, useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
 
 export default function VendorList() {
   const [restaurantList, setRestaurantList] = useState([]);

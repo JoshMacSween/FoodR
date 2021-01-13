@@ -7,13 +7,13 @@ import RestaurantNav from "./RestaurantNav";
 import UserNav from "./UserNav";
 
 export default function Header() {
-  const { user, token, logout } = useContext(UserContext);
+  const { token, logout } = useContext(UserContext);
   const { restaurantToken } = useContext(RestaurantContext);
   return (
     <Navbar bg="light" expand="lg" className="d-flex justify-content-around">
-      <Navbar.Brand href="/" className="p-2 flex-grow-1">
-        Fooder
-      </Navbar.Brand>
+      <LinkContainer to="/">
+        <Navbar.Brand className="p-2 flex-grow-1">Fooder</Navbar.Brand>
+      </LinkContainer>
 
       {restaurantToken && <RestaurantNav />}
       {token && <UserNav />}

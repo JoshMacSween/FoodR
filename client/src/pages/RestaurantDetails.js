@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Container, Row, Col, Button, Card, ListItem } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 
 export default function RestaurantDetails() {

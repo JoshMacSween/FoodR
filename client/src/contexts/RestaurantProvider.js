@@ -116,6 +116,7 @@ export default function RestaurantProvider(props) {
     <RestaurantContext.Provider
       value={{
         restId,
+        setRestId,
         removeItem,
         restaurant,
         setRestaurant,

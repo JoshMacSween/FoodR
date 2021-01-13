@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Container,
-  Row,
-  Col,
   Button,
   Form,
   Card,
@@ -12,21 +10,18 @@ import { UserContext } from "../contexts/UserProvider";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import axios from "axios";
 import DishModal from "../components/DishModal";
-import { CloseOutlined } from "@ant-design/icons";
+
 
 export default function RestaurantAdmin() {
-  const { error, setError, history } = useContext(UserContext);
+  const { setError} = useContext(UserContext);
   const {
     restaurant,
     restId,
     dishes,
     setDishes,
-    setRestaurant,
     form,
-    generalChangeRestaurant,
     removeItem,
     show,
-    handleClose,
     handleShow
   } = useContext(RestaurantContext);
 
@@ -93,9 +88,9 @@ export default function RestaurantAdmin() {
   //   fetchDishes();
   // }, []);
 
-  const addDish = () => {
-    setDishes([...dishes, { name: " " }]);
-  };
+  // const addDish = () => {
+  //   setDishes([...dishes, { name: " " }]);
+  // };
 
   return (
     <Container>

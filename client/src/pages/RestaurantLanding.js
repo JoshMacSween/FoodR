@@ -7,7 +7,7 @@ import { UserContext } from "../contexts/UserProvider";
 export default function RestaurantLanding() {
   let location = useLocation();
   const restaurant = location.state.restaurant;
-  const { addToCart, cartItems } = useContext(UserContext);
+  const { addToCart } = useContext(UserContext);
 
   return (
     <Container>

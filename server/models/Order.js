@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const { Dish, dishSchema } = require("./Restaurant");
+const { dishSchema } = require("./Restaurant");
 
 const orderModel = new mongoose.Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },

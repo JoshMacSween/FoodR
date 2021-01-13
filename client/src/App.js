@@ -10,9 +10,8 @@ import RestaurantAdmin from "./pages/RestaurantAdmin";
 import RegisterSuccess from "./pages/RegisterSuccess";
 import RestaurantDetails from "./pages/RestaurantDetails";
 import RestaurantLanding from "./pages/RestaurantLanding";
-
 import Header from "./components/Header";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import UserProvider from "./contexts/UserProvider";
 import RestaurantProvider from "./contexts/RestaurantProvider";

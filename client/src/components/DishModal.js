@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import {
-  Container,
   Row,
   Col,
   Button,
@@ -14,7 +13,6 @@ import axios from "axios";
 
 export default function DishModal({ restId }) {
   const {
-    dishes,
     form,
     setForm,
     setDishes,
@@ -23,7 +21,7 @@ export default function DishModal({ restId }) {
     show,
     handleClose,
   } = useContext(RestaurantContext);
-  const { error, setError, cart } = useContext(UserContext);
+  const { error, setError } = useContext(UserContext);
 
   const formSubmit = async form => {
     return await axios.post(

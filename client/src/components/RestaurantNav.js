@@ -1,8 +1,6 @@
-import React, { useContext } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
-import { UserContext } from "../contexts/UserProvider";
+import React from "react";
+import { Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-
 
 export default function RestaurantNav() {
   return (
@@ -11,5 +9,5 @@ export default function RestaurantNav() {
         <Nav.Link>Profile</Nav.Link>
       </LinkContainer>
     </div>
-  )
+  );
 }

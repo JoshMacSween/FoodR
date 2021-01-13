@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Card, Row, Col} from 'react-bootstrap'
+import {Container, Card} from 'react-bootstrap'
 
 export default function Favourite({favourite}) {
   return (

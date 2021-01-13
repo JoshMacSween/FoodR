@@ -1,21 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import { UserContext } from "../contexts/UserProvider";
-import axios from "axios";
 
 export default function Login() {
   const {
     generalChange,
     form,
-    loginUser,
-    token,
-    setToken,
-    user,
-    setUser,
-    handleChangeName,
-    handleChangeEmail,
-    handleChangePassword,
-    handleChangeFavourites,
+    loginUser
   } = useContext(UserContext);
 
   return (

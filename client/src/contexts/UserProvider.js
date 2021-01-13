@@ -103,7 +103,6 @@ export default function UserProvider(props) {
       value={{
         removeFromCart,
         cartTotal,
-        // cartItems,
         addToCart,
         cart,
         setCart,

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Container, Form, Button, Col, Row } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 import { UserContext } from "../contexts/UserProvider";
 import { useHistory } from "react-router";
 
@@ -8,15 +8,15 @@ export default function Register() {
   const [form, setForm] = useState({});
   const [error, setError] = useState(null);
   const history = useHistory();
-  const [favourites, setFavourites] = useState([{ name: "" }]);
+  // const [favourites, setFavourites] = useState([{ name: "" }]);
 
   const generalChange = event => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const addFavourite = () => {
-    setFavourites([...favourites, { name: "" }]);
-  };
+  // const addFavourite = () => {
+  //   setFavourites([...favourites, { name: "" }]);
+  // };
 
   return (
     <Container>
