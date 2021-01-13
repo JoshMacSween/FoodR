@@ -122,6 +122,7 @@ export default function RestaurantProvider(props) {
         dishes,
         setDishes,
         form,
+        setForm,
         restaurantToken,
         formSubmit,
         generalChangeRestaurant,

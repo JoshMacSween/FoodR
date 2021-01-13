@@ -16,6 +16,7 @@ export default function DishModal({ restId }) {
   const {
     dishes,
     form,
+    setForm,
     setDishes,
     generalChangeRestaurant,
     restaurant,
@@ -46,6 +47,7 @@ export default function DishModal({ restId }) {
               try {
                 const response = await formSubmit({ ...form, email });
                 setDishes(response.data.newDish.dishes);
+                setForm({})
                 handleClose();
               } catch (error) {
                 setError("Something went wrong, please try again");
@@ -93,7 +95,7 @@ export default function DishModal({ restId }) {
             </Row>
 
             <Button type="submit">Submit</Button>
-            <Button onClick={handleClose}>Back</Button>
+            {/* <Button onClick={handleClose}>Back</Button> */}
           </Form>
         </Card.Body>
       </Card>
