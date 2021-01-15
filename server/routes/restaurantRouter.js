@@ -130,6 +130,16 @@ router.delete("/delete/", async (req, res) => {
   }
 });
 
+// Updating Dishes
+router.put("/updateDish", async (req, res) => {
+
+})
+
+// Update Restaurant
+router.put("/updateRestaurant", async (req, res) => {
+  
+})
+
 // placing an order
 // router.post("/order", async (req, res) => {
 //   try {
