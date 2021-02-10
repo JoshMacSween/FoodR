@@ -8,8 +8,8 @@ export default function RestaurantDetails() {
   return (
     <Container>
       <Row>
-        {restaurant.dishes.map((d, i) => {
-          return <Col key={i}>{d.name}</Col>;
+        {restaurant.dishes.map((dish, i) => {
+          return <Col key={i}>{dish.name}</Col>;
         })}
       </Row>
     </Container>

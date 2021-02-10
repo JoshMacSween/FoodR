@@ -14,7 +14,6 @@ export default function Home() {
           <Card>
             <Card.Body>
               <Card.Title>User Sign Up</Card.Title>
-
               <LinkContainer to="/Register">
                 <Button block>Sign Up</Button>
               </LinkContainer>

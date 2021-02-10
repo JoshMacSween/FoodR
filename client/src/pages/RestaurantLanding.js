@@ -24,7 +24,11 @@ export default function RestaurantLanding() {
                   <Card.Text>{dish.description}</Card.Text>
                 </Col>
                 <Col>
-                  <Button onClick={() => addToCart(dish)} variant="link" style={{ marginLeft: "60%" }}>
+                  <Button
+                    onClick={() => addToCart(dish)}
+                    variant="link"
+                    style={{ marginLeft: "60%" }}
+                  >
                     Add To Order
                   </Button>
                 </Col>

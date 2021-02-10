@@ -15,40 +15,15 @@ export default function UserProvider(props) {
     password: "",
     favourites: [],
   });
-
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-
-  const addToCart = dish => {
-    setCart([...cart, dish]);
-  };
-
-  // const cartItems = cart.map(item => {
-  //   return (
-  //     <div key={item.id}>
-  //       {item.name}, ${item.price}
-  //     </div>
-  //   );
-  // });
+  const [showAddToast, setShowAddToast] = useState(false);
+  const toggleShowAddToast = () => setShowAddToast(!showAddToast);
 
   useEffect(() => {
     total();
     console.log(cart);
   }, [cart]);
-
-  const total = () => {
-    let value = 0;
-    for (let i = 0; i < cart.length; i++) {
-      value += cart[i].price;
-    }
-    setCartTotal(value);
-  };
-
-  const removeFromCart = item => {
-    let cartArray = [...cart];
-    cartArray = cartArray.filter(cartItem => cartItem._id !== item._id);
-    setCart(cartArray);
-  };
 
   useEffect(() => {
     const data = localStorage.getItem("token");
@@ -64,13 +39,33 @@ export default function UserProvider(props) {
     }
   }, []);
 
+  const total = () => {
+    let value = 0;
+    for (let i = 0; i < cart.length; i++) {
+      value += cart[i].price;
+    }
+    setCartTotal(value);
+  };
+
+  const addToCart = dish => {
+    setCart([...cart, dish]);
+    toggleShowAddToast();
+  };
+
+  const removeFromCart = item => {
+    let cartArray = [...cart];
+    cartArray = cartArray.filter(cartItem => cartItem._id !== item._id);
+    setCart(cartArray);
+  };
+
   const loginUser = async () => {
     axios
       .post("http://localhost:5000/users/login", form)
       .then(response => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("userData", JSON.stringify(response.data.user));
-        history.push("/");
+        history.push("/VendorList");
+        // Solve With UseEffect
         history.go(0);
       })
 
@@ -119,6 +114,7 @@ export default function UserProvider(props) {
         setToken,
         user,
         setUser,
+        toggleShowAddToast,
       }}
     >
       {props.children}

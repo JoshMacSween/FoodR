@@ -15,7 +15,6 @@ export default function RestaurantProvider(props) {
   const history = useHistory();
   const [restaurantToken, setRestaurantToken] = useState("");
   const [dishes, setDishes] = useState([{ name: "" }]);
-
   const [restId, setRestId] = useState(() => {
     const value = localStorage.getItem("restaurantId");
     return value !== null ? JSON.parse(value) : null;
@@ -39,8 +38,8 @@ export default function RestaurantProvider(props) {
     fetchRestaurant();
   }, [dishes]);
 
+  // Restaurant Modal
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -52,7 +51,6 @@ export default function RestaurantProvider(props) {
   // }, [restaurant]);
 
   // useEffect(() => {
-  //   console.log("We realoded dishes")
   //   async function fetchDishes() {
   //     const result = await axios
   //     .get(`http://localhost:5000/restaurants/${restaurant.id}`)

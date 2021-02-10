@@ -93,7 +93,6 @@ export default function DishModal({ restId }) {
             </Row>
 
             <Button type="submit">Submit</Button>
-            {/* <Button onClick={handleClose}>Back</Button> */}
           </Form>
         </Card.Body>
       </Card>

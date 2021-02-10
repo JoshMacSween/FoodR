@@ -54,34 +54,6 @@ export default function Register() {
           name="password"
         />
 
-        {/* <Form.Label>Password Confirm</Form.Label>
-        <Form.Control value={form.passwordConfirm} type="password" /> */}
-
-        {/* <Form.Label>Name a few of your favourite local restaurants</Form.Label>
-
-        {favourites.map((favourite, i) => {
-          return (
-            <Form.Control
-              key={i}
-              value={favourite.name}
-              onChange={e =>
-                setFavourites([
-                  ...favourites.map((f, index) =>
-                    index === i ? { name: e.target.value } : f
-                  ),
-                ])
-              }
-              type="text"
-              name={`favourites-${i}`}
-              required
-            />
-          );
-        })}
-
-        <Button onClick={addFavourite} block>
-          Add Another
-        </Button> */}
-
         <Button type="submit" block>
           Submit
         </Button>
@@ -89,3 +61,26 @@ export default function Register() {
     </Container>
   );
 }
+
+// {favourites.map((favourite, i) => {
+//   return (
+//     <Form.Control
+//       key={i}
+//       value={favourite.name}
+//       onChange={e =>
+//         setFavourites([
+//           ...favourites.map((f, index) =>
+//             index === i ? { name: e.target.value } : f
+//           ),
+//         ])
+//       }
+//       type="text"
+//       name={`favourites-${i}`}
+//       required
+//     />
+//   );
+// })}
+
+// <Button onClick={addFavourite} block>
+//   Add Another
+// </Button>
