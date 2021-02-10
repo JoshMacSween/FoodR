@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Row, Col, Card, Modal, Button, Toast } from "react-bootstrap";
+import React, { useContext, useEffect } from "react";
+import { Row, Col, Card, Modal, Button } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { UserContext } from "../contexts/UserProvider";
 import axios from "axios";
@@ -8,15 +8,9 @@ export default function CartModal() {
   const { show, handleClose, restaurantError, setRestaurantError } = useContext(
     RestaurantContext
   );
-  const {
-    cart,
-    cartTotal,
-    removeFromCart,
-    user,
-    history,
-    error,
-    setError,
-  } = useContext(UserContext);
+  const { cart, cartTotal, removeFromCart, user, history } = useContext(
+    UserContext
+  );
 
   useEffect(() => {
     if (cart.length < 1) {
@@ -24,13 +18,16 @@ export default function CartModal() {
     } else {
       setRestaurantError(null);
     }
-  }, [cart]);
+  }, [cart, setRestaurantError]);
 
   const submitOrder = async cart => {
     return await axios
       .post("http://localhost:5000/order/", { cart, user })
       .then(() => handleClose())
-      .then(() => history.push("/success"));
+      .then(() => history.push("/success"))
+      .then(() => {
+        history.go(0);
+      });
   };
   return (
     <Modal show={show} onHide={handleClose}>
