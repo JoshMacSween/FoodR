@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Partner from "./pages/Partner";
 import About from "./pages/About";
+import OrderSuccess from "./pages/OrderSuccess";
 import UserFavourites from "./pages/UserFavourites";
 import VendorList from "./pages/VendorList";
 import LoginBusiness from "./pages/LoginBusiness";
@@ -37,6 +38,7 @@ function App() {
                 <Route path="/RegisterSuccess" component={RegisterSuccess} />
                 <Route path="/RestaurantDetails" component={RestaurantDetails} />
                 <Route path="/RestaurantLanding" component={RestaurantLanding} />
+                <Route path="/Success" component={OrderSuccess} />
               </div>
             </Container>
           </UserProvider>

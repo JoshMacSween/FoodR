@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { UserContext } from "../contexts/UserProvider";
+
 export default function Home() {
+  const { orderToast, setOrderToast } = useContext(UserContext);
+  orderToast ? console.log("True") : console.log("False");
+  
   return (
     <Container className="text-center">
       <div>

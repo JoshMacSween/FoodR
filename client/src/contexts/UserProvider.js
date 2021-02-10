@@ -17,8 +17,8 @@ export default function UserProvider(props) {
   });
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-  const [showAddToast, setShowAddToast] = useState(false);
-  const toggleShowAddToast = () => setShowAddToast(!showAddToast);
+
+  const [orderToast, setOrderToast] = useState(false);
 
   useEffect(() => {
     total();
@@ -49,7 +49,7 @@ export default function UserProvider(props) {
 
   const addToCart = dish => {
     setCart([...cart, dish]);
-    toggleShowAddToast();
+    // toggleShowAddToast();
   };
 
   const removeFromCart = item => {
@@ -114,16 +114,14 @@ export default function UserProvider(props) {
         setToken,
         user,
         setUser,
-        toggleShowAddToast,
-        showAddToast,
-        setShowAddToast,
+        orderToast,
+        setOrderToast,
       }}
     >
       {props.children}
     </UserContext.Provider>
   );
 }
-
 
 // const [showOrderToast, setShowOrderToast] = useState(false);
 //   <Col xs={6}>

@@ -6,9 +6,14 @@ import axios from "axios";
 
 export default function CartModal() {
   const { show, handleClose, error } = useContext(RestaurantContext);
-  const { cart, cartTotal, removeFromCart, user, history } = useContext(
-    UserContext
-  );
+  const {
+    cart,
+    cartTotal,
+    removeFromCart,
+    user,
+    history,
+    setOrderToast,
+  } = useContext(UserContext);
 
   const submitOrder = async cart => {
     try {
@@ -18,8 +23,10 @@ export default function CartModal() {
           handleClose();
         })
         .then(() => {
-          history.push("/");
-        });
+          history.push("/Success");
+        }).then(() => {
+          setOrderToast(true)
+        })
     } catch (error) {
       console.log("Error");
     }
