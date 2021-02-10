@@ -115,9 +115,22 @@ export default function UserProvider(props) {
         user,
         setUser,
         toggleShowAddToast,
+        showAddToast,
+        setShowAddToast,
       }}
     >
       {props.children}
     </UserContext.Provider>
   );
 }
+
+
+// const [showOrderToast, setShowOrderToast] = useState(false);
+//   <Col xs={6}>
+//         <Toast show={showOrderToast} onClose={setShowOrderToast(false)}>
+//           <Toast.Header>
+//             Weeooo
+//           </Toast.Header>
+//           <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+//         </Toast>
+//       </Col>

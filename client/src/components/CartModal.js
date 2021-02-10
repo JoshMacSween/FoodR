@@ -1,24 +1,29 @@
-import React, { useContext } from "react";
-import {
-  Row,
-  Col,
-  Card,
-  Modal,
-  Button,
-} from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Row, Col, Card, Modal, Button, Toast } from "react-bootstrap";
 import { RestaurantContext } from "../contexts/RestaurantProvider";
 import { UserContext } from "../contexts/UserProvider";
-import axios from 'axios'
+import axios from "axios";
 
 export default function CartModal() {
   const { show, handleClose, error } = useContext(RestaurantContext);
-  const { cart, cartTotal, removeFromCart, user } = useContext(
+  const { cart, cartTotal, removeFromCart, user, history } = useContext(
     UserContext
   );
 
-  const submitOrder = async (cart) => {
-    return await axios.post("http://localhost:5000/order/", {cart, user})
-  }
+  const submitOrder = async cart => {
+    try {
+      return await axios
+        .post("http://localhost:5000/order/", { cart, user })
+        .then(() => {
+          handleClose();
+        })
+        .then(() => {
+          history.push("/");
+        });
+    } catch (error) {
+      console.log("Error");
+    }
+  };
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -51,7 +56,11 @@ export default function CartModal() {
 
           <hr />
           <Card.Subtitle className="mb-2">Total: ${cartTotal}</Card.Subtitle>
-          <Button onClick={() => submitOrder(cart, user)} type="submit" className="mr-2">
+          <Button
+            onClick={() => submitOrder(cart, user)}
+            type="submit"
+            className="mr-2"
+          >
             Submit
           </Button>
           <Button onClick={handleClose}>Back</Button>
