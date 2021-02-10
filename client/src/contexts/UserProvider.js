@@ -22,7 +22,6 @@ export default function UserProvider(props) {
 
   useEffect(() => {
     total();
-    console.log(cart);
   }, [cart]);
 
   useEffect(() => {

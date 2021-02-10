@@ -19,6 +19,7 @@ export default function RestaurantProvider(props) {
     const value = localStorage.getItem("restaurantId");
     return value !== null ? JSON.parse(value) : null;
   });
+  const [restaurantError, setRestaurantError] = useState(null);
 
   useEffect(() => {
     const data = localStorage.getItem("restaurantToken");
@@ -40,7 +41,9 @@ export default function RestaurantProvider(props) {
 
   // Restaurant Modal
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+  };
   const handleShow = () => setShow(true);
 
   // useEffect(() => {
@@ -130,6 +133,8 @@ export default function RestaurantProvider(props) {
         setShow,
         handleClose,
         handleShow,
+        restaurantError,
+        setRestaurantError,
       }}
     >
       {props.children}
